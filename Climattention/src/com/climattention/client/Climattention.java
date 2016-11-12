@@ -20,15 +20,12 @@ import com.google.gwt.user.client.ui.TextBox;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class Climattention implements EntryPoint {
- 
-  private TextBox newSymbolTextBox = new TextBox();
-
 
   /**
    * Entry point method.
    */
   public void onModuleLoad() {
-	  ;
+	  System.out.println("Module starts loading... ");
     
   }
 }
