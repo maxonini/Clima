@@ -18,18 +18,20 @@
 
     function drawMap() {
        var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
+          ['Country', 'Temperature'],
           ['Germany', 200],
           ['United States', 300],
           ['Brazil', 400],
           ['Canada', 500],
           ['France', 600],
-          ['RU', 700]
+          ['RU', 700],
+          ['Australia', 350],
         ]);
 
 
        var options = {};
         options['dataMode'] = 'regions';
+        options['colors'] = [0x86FCFF, 0x78F722, 0xF02424 ]
 
         var container = document.getElementById('regions_div');
         var geomap = new google.visualization.GeoMap(container);
@@ -53,7 +55,7 @@
 
     <h1>Web Application Climattention</h1>
 
-    <p>Welcome to our Web App <strong>Climattention!</strong> Our App should give you a sense of the clima change the past hunderd years. With a timeline, you can decide for which year you want see the change in temperature.</p>
+    <p>Welcome to our Web App <strong>Climattention!</strong> Our App should give you a sense of the climate change the past hundred years. With a timeline, you can decide for which year you want see the change in temperature.</p>
 
     
     <div id="regions_div" style="width: 900px; height: 500px;"></div>
