@@ -9,9 +9,10 @@
     <!-- If you add any GWT meta tags, they must   -->
     <!-- be added before this line.                -->
     <!--                                           -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+  <script type="text/javascript" language="javascript" src="climattention/climattention.nocache.js"></script>
   <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
 
+    
   <script type='text/javascript'>
    google.charts.load('upcoming', {'packages': ['geomap']});
    google.charts.setOnLoadCallback(drawMap);
@@ -40,12 +41,12 @@
       };
 
 
-  </script>
+  </script> 
 </head>
 
 <body>
 
-    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
     <noscript>
       <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
         Your web browser must have JavaScript enabled
@@ -56,7 +57,8 @@
     <h1>Web Application Climattention</h1>
 
     <p>Welcome to our Web App <strong>Climattention!</strong> Our App should give you a sense of the climate change the past hundred years. With a timeline, you can decide for which year you want see the change in temperature.</p>
-
+	
+	<div id="clima"></div>
     
     <div id="regions_div" style="width: 900px; height: 500px;"></div>
   

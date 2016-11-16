@@ -1,5 +1,15 @@
 package com.climattention.client;
 
-public class Table {
+import com.google.gwt.user.client.ui.VerticalPanel;
 
+public class Table {
+	
+	VerticalPanel vPanel = new VerticalPanel();
+
+
+
+
+	
 }
+	
+
