@@ -216,7 +216,7 @@ public class Climattention implements EntryPoint {
 	  worldMap = new Map(700,1200, currentQuery,greetService);
 		map.add(worldMap);
 		
-		worldMap.setExcludeUS(toggleUSA);
+		worldMap.setExcludeUncertainData(toggleUncertainty);
 		worldMap.setTotalDataFound(totalDataFound);
 		worldMap.setTotalDataVisualized(totalDataVisualized);
 		//map.add(updateMapButton);

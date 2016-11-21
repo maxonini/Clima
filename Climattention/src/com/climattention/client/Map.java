@@ -269,7 +269,7 @@ public class Map extends VerticalPanel{
 			return worldMap;
 		}
 
-		public void setExcludeUS(CheckBox excludeUncertainData1) {
+		public void setExcludeUncertainData(CheckBox excludeUncertainData1) {
 			this.excludeUncertainData = excludeUncertainData1;
 		}
 
