@@ -13,9 +13,8 @@ private float uncertainty;
 private float longitude;
 private float latitude;
 
-public Datapoint(String date,String year,float temperature,float uncertainty,String city,String country,float latitude,float longitude){
+public Datapoint(String date,float temperature,float uncertainty,String city,String country,float latitude,float longitude){
 	this.date= date; 
-	this.year=year;
 	this.temperature = temperature;
 	this.uncertainty = uncertainty;
 	this.country=country;
