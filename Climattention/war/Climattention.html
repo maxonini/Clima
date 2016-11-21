@@ -12,36 +12,6 @@
   <script type="text/javascript" language="javascript" src="climattention/climattention.nocache.js"></script>
   <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
 
-    
-  <script type='text/javascript'>
-   google.charts.load('upcoming', {'packages': ['geomap']});
-   google.charts.setOnLoadCallback(drawMap);
-
-    function drawMap() {
-       var data = google.visualization.arrayToDataTable([
-          ['Country', 'Temperature'],
-          ['Germany', 200],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700],
-          ['Australia', 350],
-        ]);
-
-
-       var options = {};
-        options['dataMode'] = 'regions';
-        options['colors'] = [0x86FCFF, 0x78F722, 0xF02424 ]
-
-        var container = document.getElementById('regions_div');
-        var geomap = new google.visualization.GeoMap(container);
-
-        geomap.draw(data, options);
-      };
-
-
-  </script> 
 </head>
 
 <body>
@@ -59,28 +29,7 @@
     <p>Welcome to our Web App <strong>Climattention!</strong> Our App should give you a sense of the climate change the past hundred years. With a timeline, you can decide for which year you want see the change in temperature.</p>
 	
 	<div id="clima"></div>
-    
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
-  
-  
-  <!-- Zeitstrahl, Ausgewählter wert kann durch "NewValue" referenziert werden -->
-   <input type="range"  min="1969" max="2013" value="1969" step="1" onchange="showValue(this.value)" />
-  <span id="range">1969</span>
-  <script type="text/javascript">
-  
 
-
-  
-  function showValue(newValue)
-  {
-	document.getElementById("range").innerHTML=newValue;
-  //Noch nicht implementiert (Verküpfung Strahl -> Karte
-    
-  
-  }
-  
-
-</script>
 </body>
 
 </html>
