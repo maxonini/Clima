@@ -8,6 +8,8 @@
 <module rename-to='climattention'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
   <inherits name='com.google.gwt.user.User'/>
+  <inherits name='com.google.gwt.core.Core' />
+  <inherits name="com.google.gwt.visualization.Visualization"/>
 
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->

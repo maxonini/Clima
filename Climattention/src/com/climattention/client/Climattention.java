@@ -1,10 +1,24 @@
 package com.climattention.client;
 
 
+import com.climattention.shared.DataQuery;
+import com.climattention.shared.DataQueryResult;
+import com.climattention.shared.Datapoint;
+import com.climattention.shared.SortColumn;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.cellview.client.ColumnSortEvent.AsyncHandler;
+import com.google.gwt.user.cellview.client.ColumnSortList.ColumnSortInfo;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -12,11 +26,18 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.view.client.AsyncDataProvider;
+import com.google.gwt.view.client.HasData;
+
+
+
+
 
 
 /**
@@ -28,28 +49,63 @@ public class Climattention implements EntryPoint {
 	
 	private HorizontalPanel hPanelSlider = new HorizontalPanel();
 	
+	private final GreetingServiceAsync greetService = GWT.create(GreetingService.class);
+	
+	private int startYear;
+	private int endYear;
+	private int currentYear;
+	
+	private CheckBox toggleUncertainty=new CheckBox();
+	private Label toggleUncertaintylbl=new Label("Toggle Uncertainty");
+	
+	private DataQuery currentQuery = new DataQuery();
+	private ListBox dropBox = new ListBox(true);
+
+	private Button yearUP = new Button("year UP");
+	private Button yearDOWN = new Button("year DOWN");
+
 	private VerticalPanel vPanel = new VerticalPanel();
 	private ScrollPanel scrollPanelTable = new ScrollPanel();
 	private VerticalPanel map = new VerticalPanel();
 	private FlowPanel searchMenu = new FlowPanel();
-	
-	private HorizontalPanel name = new HorizontalPanel();
+
+	private HorizontalPanel city = new HorizontalPanel();
+	private HorizontalPanel year = new HorizontalPanel();
+	private HorizontalPanel country = new HorizontalPanel();
+	private HorizontalPanel date = new HorizontalPanel();
+	private HorizontalPanel temperature = new HorizontalPanel();
 	private HorizontalPanel search = new HorizontalPanel();
 	private HorizontalPanel upperPanel=new HorizontalPanel();
-	
-	private TextBox nameField = new TextBox();
+
+	private TextBox cityField = new TextBox();
+	private TextBox yearField = new TextBox();
+	private TextBox countryField = new TextBox();
+	private TextBox languageField = new TextBox();
 	private Button searchButton = new Button("Search");
 	private Button exportButton = new Button("Export");
 	private Button updateMapButton =new Button("Update Map");
 	
 	private Map worldMap;
-	private Table table = new Table();
-	private CheckBox toggleUncertainty=new CheckBox();
-	private Label toggleUncertaintylbl=new Label("Toggle Uncertainty");
-	private HorizontalPanel toggleUSContainer=new HorizontalPanel();
+	private CheckBox toggleUSA=new CheckBox();
+	private Label toggleUSAlbl=new Label("Toggle USA");
 	private HorizontalPanel mapOptionsPanel=new HorizontalPanel();
+	private Label totalDataFound = new Label();
+	private Label totalDataVisualized = new Label();
+	private VerticalPanel mapInfo=new VerticalPanel();
+	private HorizontalPanel toggleUSContainer=new HorizontalPanel();
 	
-	private Label nameLabel = new Label("Country");
+
+	private Table table = new Table();
+	
+	private AsyncDataProvider<Datapoint> tableDataProvider = new AsyncDataProvider<Datapoint>() {
+		@Override
+		protected void onRangeChanged(HasData<Datapoint> display) {
+			updateData(display.getVisibleRange().getStart(), display
+					.getVisibleRange().getLength());
+		}
+	};
+	
+	private Label cityLabel = new Label("City");
 	
 	private TabLayoutPanel tabPanel = new TabLayoutPanel(2.5, Unit.EM);
 	  
@@ -62,35 +118,68 @@ public class Climattention implements EntryPoint {
   public void onModuleLoad() {
 	  System.out.println("Module starts loading... ");
 	  
+	  
 	  searchMenu.setWidth("100%");
 	  upperPanel.add(searchMenu);
 	  
-	  name.setStyleName("flowPanel_inline");
+	  city.setStyleName("flowPanel_inline");
 	  search.setStyleName("flowPanel_inline");
 	  searchButton.setStyleName("flowPanel_inline");
 	  exportButton.setStyleName("rightTop");
 	  
-	  name.add(nameLabel);
-	  name.add(nameField);
+	  city.add(cityLabel);
+	  city.add(cityField);
 	  search.add(searchButton);
 
-	  searchMenu.add(name);
+	  searchMenu.add(city);
 	  searchMenu.add(search);
 	  
 	  //MAP UI ELEMENTS
-	  toggleUSContainer.add(toggleUncertaintylbl);
-	  toggleUSContainer.add(toggleUncertainty);
-	  
-	  mapOptionsPanel.add(toggleUSContainer);
-	  mapOptionsPanel.addStyleName("mapOptionsPanel");
-	  mapOptionsPanel.setWidth("300px");
-	  
-	  //scrollPanelTable.add(table);
+	  toggleUSAlbl.addStyleName("mapOptionsPanelContent");
+		toggleUSA.addStyleName("mapOptionsPanelContent");
+		toggleUSContainer.add(toggleUSAlbl);
+		toggleUSContainer.add(toggleUSA);
+		toggleUSContainer.setStyleName("mapOptionsPanelContent");
+		
+		mapInfo.add(totalDataFound);
+		mapInfo.add(totalDataVisualized);
+		mapInfo.addStyleName("mapOptionsPanelContent");
+		
+		mapOptionsPanel.add(toggleUSContainer);
+		mapOptionsPanel.add(mapInfo);
+		
+		mapOptionsPanel.addStyleName("mapOptionsPanel");
+		mapOptionsPanel.setWidth("300px");
+		
+		//map.add(mapOptionsPanel);
+
+		scrollPanelTable.add(table);
+
+		// mapSliderBarSimpleHorizontal.setHeight("100px");
+		// map.add(mapSliderBarSimpleHorizontal);
+		hPanelSlider.add(yearDOWN);
+		hPanelSlider.add(dropBox);
+		hPanelSlider.add(yearUP);
+		//hPanelSlider.add(updateMapButton);
+		updateMapButton.setStyleName("rightTop");
 	  
 	  upperPanel.add(exportButton);
 	  upperPanel.add(updateMapButton);
 	  upperPanel.add(hPanelSlider);
 	  upperPanel.add(mapOptionsPanel);
+	  
+	  for (int i = startYear; i < endYear + 1; i++) {
+			String year = Integer.toString(i);
+
+			dropBox.addItem(year);
+		}
+	  
+	  dropBox.setSelectedIndex(endYear - startYear);
+
+		dropBox.setHeight("50px");
+		dropBox.setWidth("100px");
+		yearUP.setHeight("50px");
+		yearDOWN.setHeight("50px");
 
 	  hPanelSlider.addStyleName("mapOptionsPanelContent");
 	  hPanelSlider.setVisible(false);
@@ -113,27 +202,178 @@ public class Climattention implements EntryPoint {
 	  // Associate the Main panel with the HTML host page.
 	  RootPanel.get("clima").add(vPanel);
 		
+	  searchButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				searchData();
+			}
+		});
+		searchAtEnter(cityField);
+		searchAtEnter(yearField);
+		searchAtEnter(countryField);
+		searchAtEnter(languageField);
+		//searchAtEnter(genreField);
+		
+		sourceLabel.setText("Source: "+ 
+				"     ");
+	  
+	  
 	  
 	  vPanel.add(sourceLabel);
 	  vPanel.add(licenseLink);
 	  
+	  	tableDataProvider.addDataDisplay(table.getTable());
+	    AsyncHandler columnSortHandler = new AsyncHandler(table.getTable());
+	    table.getTable().addColumnSortHandler(columnSortHandler);
+
 	  
-	  tabPanel.addSelectionHandler(new SelectionHandler<Integer>(){
-		  public void onSelection(SelectionEvent<Integer> event){
-		   int tabId = event.getSelectedItem();
-		   if(tabId==0)
-		   {
-			   isInMapMode=false;
-			   toggleMapMode(); 
-		   }
-		   else
-		   {
-			   isInMapMode=true;
-			   toggleMapMode();
-		   }
-		 }
+	  
+	  worldMap = new Map(700,1200, currentQuery,greetService);
+		map.add(worldMap);
+		
+		worldMap.setExcludeUS(toggleUSA);
+		worldMap.setTotalDataFound(totalDataFound);
+		worldMap.setTotalDataVisualized(totalDataVisualized);
+		//map.add(updateMapButton);
+		
+		RootPanel.get().add(vPanel);
+		yearUP.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				if(currentYear==endYear){
+					currentYear=startYear;	
+				}
+				else{
+					currentYear++;
+				}
+				dropBox.setSelectedIndex(currentYear - startYear);
+				worldMap.getCurrentQuery().setYear(currentYear);
+				worldMap.UpdateWorldMap();
+			}
 		});
-  }
+
+		yearDOWN.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				if(currentYear==startYear){
+					currentYear=endYear;
+				}
+				else{
+					currentYear--;
+				}
+				dropBox.setSelectedIndex(currentYear - startYear);	
+				worldMap.getCurrentQuery().setYear(currentYear);
+				worldMap.UpdateWorldMap();
+			}
+		});
+
+		
+		updateMapButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				//worldMap.getCurrentQuery().setYear( yearField.getText());
+				//worldMap.getCurrentQuery().setName("");
+				worldMap.getCurrentQuery().setCountry("");
+				//worldMap.getCurrentQuery().setLanguage("");
+				//worldMap.getCurrentQuery().setGenre("");
+				worldMap.UpdateWorldMap();
+			}
+		});
+
+		exportButton.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				String exportUrl = Window.Location.createUrlBuilder().setPath("exportcsv")
+						.setParameter("city", currentQuery.getCity()).setParameter("year", Integer.toString(currentQuery.getYear()))
+						.setParameter("country", currentQuery.getCountry())
+//						.setParameter("language", currentQuery.getLanguage())
+//						.setParameter("duration", currentQuery.getLength())
+//						.setParameter("genre", currentQuery.getGenre())
+						.buildString();
+				
+				Window.Location.replace(exportUrl);
+				
+			}
+		});
+		tabPanel.addSelectionHandler(new SelectionHandler<Integer>(){
+			  public void onSelection(SelectionEvent<Integer> event){
+			   int tabId = event.getSelectedItem();
+			   if(tabId==0)
+			   {
+				   isInMapMode=false;
+				   toggleMapMode(); 
+			   }
+			   else
+			   {
+				   isInMapMode=true;
+				   toggleMapMode();
+			   }
+			 }
+			});
+
+	}
+
+	private void searchData() {
+		currentQuery.setCity(cityField.getText());
+		//currentQuery.setYear(yearField.getText());
+		currentQuery.setCountry(countryField.getText());
+		//currentQuery.setLanguage(languageField.getText());
+		//currentQuery.setGenre(genreField.getText());
+		updateData(0, table.getTable().getVisibleRange().getLength());
+	}
+
+	private void updateData(int start, int length) {
+		//currentQuery.setOffset(start);
+		currentQuery.setLimit(length);
+		ColumnSortInfo columnSortInfo = table.getTable().getColumnSortList().get(0);
+		SortColumn sortColumn = SortColumn.valueOf(columnSortInfo.getColumn().getDataStoreName());
+		//currentQuery.setAscending(columnSortInfo.isAscending());
+		//currentQuery.setSortColumn(sortColumn);
+		greetService.getDataFromServer(currentQuery,
+				new AsyncCallback<DataQueryResult>() {
+					public void onFailure(Throwable caught) {
+						System.out.println("Failed: " + caught.toString());
+					}
+
+					public void onSuccess(DataQueryResult result) {
+						System.out.println("Success: return "
+								+ result.getData().size() + " of "
+								+ result.getTotalDataCount() + " movies.");
+
+						if (result.getData().size() == 0) {
+							Window.alert("No movies found that match selected criteria");
+						}
+						tableDataProvider.updateRowData(
+								currentQuery.getYear(), result.getData());
+						tableDataProvider.updateRowCount(
+								result.getTotalDataCount(), true);
+					}
+				});
+	}
+
+	private void searchAtEnter(TextBox filter) {
+		filter.addKeyDownHandler(new KeyDownHandler() {
+			public void onKeyDown(KeyDownEvent event) {
+				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+					if(!isInMapMode){
+						searchData();
+						currentYear=Integer.parseInt(yearField.getText());
+						
+					
+					}
+					else{
+						currentYear=Integer.parseInt(yearField.getText());
+						//worldMap.getCurrentQuery().setYear(yearField.getText());
+						//worldMap.getCurrentQuery().setName("");
+						
+						worldMap.getCurrentQuery().setCountry("");
+						//worldMap.getCurrentQuery().setLanguage("");
+						//worldMap.getCurrentQuery().setGenre("");
+						worldMap.UpdateWorldMap();
+						System.out.println(Integer.parseInt(yearField.getText()));
+					}
+				}
+			}
+		});
+	}
+	
+	  
+  
   
   
   
@@ -145,7 +385,7 @@ public class Climattention implements EntryPoint {
 		{
 			mapOptionsPanel.setVisible(true);
 			hPanelSlider.setVisible(true);
-			name.setVisible(false);
+			city.setVisible(false);
 			search.setVisible(false);
 			updateMapButton.setVisible(true);
 			/*if(yearField.getText()!=""){
@@ -157,7 +397,7 @@ public class Climattention implements EntryPoint {
 		{
 			mapOptionsPanel.setVisible(false);
 			hPanelSlider.setVisible(false);
-			name.setVisible(true);
+			city.setVisible(true);
 			search.setVisible(true);
 			updateMapButton.setVisible(false);
 		}

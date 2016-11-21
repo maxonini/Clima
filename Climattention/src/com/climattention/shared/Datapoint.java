@@ -1,10 +1,10 @@
-package com.climattention.client;
+package com.climattention.shared;
 
 
 public class Datapoint {
 
 private String date;
-private int year;
+private String year;
 private String country;
 private String city;
 private float temperature;
@@ -13,7 +13,7 @@ private float uncertainty;
 private float longitude;
 private float latitude;
 
-public Datapoint(String date,int year,float temperature,float uncertainty,String city,String country,float latitude,float longitude){
+public Datapoint(String date,String year,float temperature,float uncertainty,String city,String country,float latitude,float longitude){
 	this.date= date; 
 	this.year=year;
 	this.temperature = temperature;
@@ -23,7 +23,7 @@ public Datapoint(String date,int year,float temperature,float uncertainty,String
 	this.longitude = longitude;
 	this.latitude = latitude;		
 	}
-public int getYear(){
+public String getYear(){
 	return year;
 	}
 public float getLongitude(){
@@ -53,6 +53,21 @@ public void setUncertainty(float uncertainty){
 public void setTemperatur(float temperature){
 	this.temperature = temperature;
 	}
+public String getYearAsString(){
+	return year;	
+}
+public String getUncertainityAsString(){
+	return Float.toString(uncertainty);	
+}
+public String getTempAsString(){
+	return Float.toString(temperature);	
+}
+public String getLongitudeAsString(){
+	return Float.toString(longitude);	
+}
+public String getLatitudeAsString(){
+	return Float.toString(latitude);	
+}
 }
 
 
