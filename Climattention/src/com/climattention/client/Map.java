@@ -112,73 +112,19 @@ public class Map extends VerticalPanel{
 		public void prepareDataSet() {
 
 			System.out.println("DataListSize: " + dataList.size());
-
 			totalDataFound = 0;
 			totalDataVisualized = 0;
-
 			if (dataList.size() != 0) {
 				for (Datapoint data: dataList) {
 					boolean isInList = false;
-
 					totalDataFound++;
 
-					if (excludeUncertainData.getValue() && data.getCountry().contains("United States")) {
-						/*
-						 * DO NOTHING, this is to improve the maps visualization
-						 * solution,if the User is not interested in US-Movies
-						 */
-					} else
-
-					{
-						// handling common exceptions first
-						if (data.getCountry().contains("Soviet") == true) {
-							for (CountryCounter c : countryList) {
-								if (c.getCountryName().equals("Russia")) {
-									c.increaseNumberOfData();
-									isInList = true;
-									break;
-
-								}
-							}
-
-						}
-						if (data.getCountry().contains("England") == true) {
-							for (CountryCounter c : countryList) {
-								if (c.getCountryName().equals("United Kingdom")) {
-									c.increaseNumberOfData();
-									isInList = true;
-									break;
-								}
-							}
-
-						}
-						if (data.getCountry().contains("Scotland") == true) {
-							for (CountryCounter c : countryList) {
-								if (c.getCountryName().equals("United Kingdom")) {
-									c.increaseNumberOfData();
-									isInList = true;
-									break;
-								}
-							}
-
-						}
-						if (data.getCountry().contains("German") == true) {
-							for (CountryCounter c : countryList) {
-								if (c.getCountryName().equals("Germany")) {
-									c.increaseNumberOfData();
-									isInList = true;
-									break;
-								}
-							}
-
-						}
-
-						for (CountryCounter countryCounter : countryList) {
-							if (data.getCountry().contains(countryCounter.getCountryName())) {
-								countryCounter.increaseNumberOfData();
-								isInList = true;
-								break;
-							} else {
+					for (CountryCounter countryCounter : countryList) {
+						if (data.getCountry().contains(countryCounter.getCountryName())) {
+							countryCounter.increaseNumberOfData();
+							isInList = true;
+							break;
+						} else {
 								// DEBUG: System.out.println("Country not maching");
 							}
 						}
@@ -187,14 +133,13 @@ public class Map extends VerticalPanel{
 							System.out.println("Country not in List: " + data.getCountry());
 							totalDataVisualized--;
 						}
-
 					}
 				}
-			} else {
-				System.out.println("MovieList is Empty");
+			 else {
+				System.out.println("TemperatureList is Empty");
 			}
-			totalDataFoundlbl.setText("Total Movies Found: " + totalDataFound);
-			totalDataVisualizedlbl.setText("Total Movies Visualized: " + totalDataVisualized);
+			totalDataFoundlbl.setText("Total Cities Found: " + totalDataFound);
+			totalDataVisualizedlbl.setText("Total Cities Visualized: " + totalDataVisualized);
 		}
 		
 		public Options getMapOptions() {
@@ -232,9 +177,9 @@ public class Map extends VerticalPanel{
 
 			if (currentQuery.getYear() == 0) {
 				if (isInitialized) {
-					Window.alert("You have not chosen any criteria! By default, only movies of 1930 will be shown");
+					Window.alert("You have not chosen any criteria! By default, the year is set to 2000");
 				}
-				currentQuery.setYear(1930);
+				currentQuery.setYear(2000);
 			}
 
 			greetingService.getDataFromServer(currentQuery, new AsyncCallback<DataQueryResult>() {
@@ -244,7 +189,7 @@ public class Map extends VerticalPanel{
 
 				public void onSuccess(DataQueryResult result) {
 					if (result.getData().size() == 0) {
-						Window.alert("No movies found that match selected criteria");
+						Window.alert("Nothing found");
 					}
 					// DEBUG: System.out.println("Done loading");
 					dataList = result.getData();

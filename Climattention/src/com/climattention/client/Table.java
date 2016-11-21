@@ -7,7 +7,6 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.climattention.shared.DataQuery;
 import com.climattention.shared.Datapoint;
 import com.climattention.shared.SortColumn;
 
