@@ -23,7 +23,6 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -52,10 +51,7 @@ public class Climattention implements EntryPoint {
 	private int currentYear;
 	
 	private DataQuery currentQuery = new DataQuery();
-	private ListBox dropBox = new ListBox(true);
-
-	private Button yearUP = new Button("year UP");
-	private Button yearDOWN = new Button("year DOWN");
+	//private ListBox dropBox = new ListBox(true);
 
 	private VerticalPanel vPanel = new VerticalPanel();
 	private ScrollPanel scrollPanelTable = new ScrollPanel();
@@ -101,7 +97,7 @@ public class Climattention implements EntryPoint {
 	
 	private TabLayoutPanel tabPanel = new TabLayoutPanel(2.5, Unit.EM);
 	  
-	private Anchor sourceLabel = new Anchor("All data is taken form the datafile GlobalLandTemperaturesByMajorCity_v1");
+	private Label sourceLabel = new Label();
 	
   /**
    * Entry point method.
@@ -127,29 +123,25 @@ public class Climattention implements EntryPoint {
 	  
 	  //MAP UI ELEMENTS
 	  toggleUncertaintylbl.addStyleName("mapOptionsPanelContent");
-		toggleUncertainty.addStyleName("mapOptionsPanelContent");
-		toggleUncertaintyContainer.add(toggleUncertaintylbl);
-		toggleUncertaintyContainer.add(toggleUncertainty);
-		toggleUncertaintyContainer.setStyleName("mapOptionsPanelContent");
+	  toggleUncertainty.addStyleName("mapOptionsPanelContent");
+	  toggleUncertaintyContainer.add(toggleUncertaintylbl);
+	  toggleUncertaintyContainer.add(toggleUncertainty);
+	  toggleUncertaintyContainer.setStyleName("mapOptionsPanelContent");
 		
-		mapInfo.add(totalDataFound);
-		mapInfo.add(totalDataVisualized);
-		mapInfo.addStyleName("mapOptionsPanelContent");
+	  mapInfo.add(totalDataFound);
+	  mapInfo.add(totalDataVisualized);
+	  mapInfo.addStyleName("mapOptionsPanelContent");
 		
-		mapOptionsPanel.add(toggleUncertaintyContainer);
-		mapOptionsPanel.add(mapInfo);
+	  mapOptionsPanel.add(toggleUncertaintyContainer);
+	  mapOptionsPanel.add(mapInfo);
 		
-		mapOptionsPanel.addStyleName("mapOptionsPanel");
-		mapOptionsPanel.setWidth("300px");
+	  mapOptionsPanel.addStyleName("mapOptionsPanel");
+	  mapOptionsPanel.setWidth("300px");
 
+	  scrollPanelTable.add(table);
 
-		scrollPanelTable.add(table);
-
-		hPanelSlider.add(yearDOWN);
-		hPanelSlider.add(dropBox);
-		hPanelSlider.add(yearUP);
-		//hPanelSlider.add(updateMapButton);
-		updateMapButton.setStyleName("rightTop");
+	  //hPanelSlider.add(updateMapButton);
+	  updateMapButton.setStyleName("rightTop");
 	  
 	  upperPanel.add(exportButton);
 	  upperPanel.add(updateMapButton);
@@ -158,16 +150,8 @@ public class Climattention implements EntryPoint {
 	  
 	  for (int i = startYear; i < endYear + 1; i++) {
 			String year = Integer.toString(i);
-
-			dropBox.addItem(year);
 		}
 	  
-	  dropBox.setSelectedIndex(endYear - startYear);
-
-		dropBox.setHeight("50px");
-		dropBox.setWidth("100px");
-		yearUP.setHeight("50px");
-		yearDOWN.setHeight("50px");
 
 	  hPanelSlider.addStyleName("mapOptionsPanelContent");
 	  hPanelSlider.setVisible(false);
@@ -186,7 +170,6 @@ public class Climattention implements EntryPoint {
 	  vPanel.add(tabPanel);
 	  vPanel.setWidth("100%");
 	  
-	  
 	  // Associate the Main panel with the HTML host page.
 	  RootPanel.get("clima").add(vPanel);
 		
@@ -200,12 +183,9 @@ public class Climattention implements EntryPoint {
 		searchAtEnter(countryField);
 		searchAtEnter(languageField);
 		
-		sourceLabel.setText("Source: "+ 
-				"     ");
-	  
-	  
-	  
-	  vPanel.add(sourceLabel);
+		sourceLabel.setText("Source: All data is taken form the datafile GlobalLandTemperaturesByMajorCity_v1");
+	  	  
+		vPanel.add(sourceLabel);
 	  
 	  	tableDataProvider.addDataDisplay(table.getTable());
 	    AsyncHandler columnSortHandler = new AsyncHandler(table.getTable());
@@ -222,7 +202,7 @@ public class Climattention implements EntryPoint {
 		//map.add(updateMapButton);
 		
 		RootPanel.get().add(vPanel);
-		yearUP.addClickHandler(new ClickHandler() {
+		/*yearUP.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				if(currentYear==endYear){
 					currentYear=startYear;	
@@ -248,7 +228,7 @@ public class Climattention implements EntryPoint {
 				worldMap.getCurrentQuery().setYear(currentYear);
 				worldMap.UpdateWorldMap();
 			}
-		});
+		});*/
 
 		
 		updateMapButton.addClickHandler(new ClickHandler() {
