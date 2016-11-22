@@ -33,6 +33,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.view.client.AsyncDataProvider;
 import com.google.gwt.view.client.HasData;
+import com.kiouri.sliderbar.client.solution.simplehorizontal.SliderBarSimpleHorizontal;
 
 
 /**
@@ -65,6 +66,7 @@ public class Climattention implements EntryPoint {
 	private HorizontalPanel temperature = new HorizontalPanel();
 	private HorizontalPanel search = new HorizontalPanel();
 	private HorizontalPanel upperPanel=new HorizontalPanel();
+	private FlowPanel sliderPanel = new FlowPanel();
 
 	private TextBox cityField = new TextBox();
 	private TextBox yearField = new TextBox();
@@ -72,7 +74,7 @@ public class Climattention implements EntryPoint {
 	private TextBox languageField = new TextBox();
 	private Button searchButton = new Button("Search");
 	private Button exportButton = new Button("Export");
-	private Button updateMapButton =new Button("Update Map");
+	private Button updateMapButton = new Button("Update Map");
 	
 	private Map worldMap;
 	private CheckBox toggleUncertainty=new CheckBox();
@@ -105,6 +107,9 @@ public class Climattention implements EntryPoint {
   public void onModuleLoad() {
 	  System.out.println("Module starts loading... ");
 	  
+	  //Slider
+	  SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(100, "30", true);
+	  sliderPanel.add(slider);
 	  
 	  searchMenu.setWidth("100%");
 	  upperPanel.add(searchMenu);
@@ -168,7 +173,9 @@ public class Climattention implements EntryPoint {
 	  vPanel.add(searchMenu);
 	  vPanel.add(upperPanel);
 	  vPanel.add(tabPanel);
+	  vPanel.add(sliderPanel);
 	  vPanel.setWidth("100%");
+	  
 	  
 	  // Associate the Main panel with the HTML host page.
 	  RootPanel.get("clima").add(vPanel);

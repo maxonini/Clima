@@ -149,7 +149,7 @@ public class Map extends VerticalPanel{
 			options.setHeight(mapHeight);
 			options.setWidth(mapWidth);
 			options.setShowLegend(true);
-			options.setColors(0x99FFCC, 0x73caff, 0x794dff, 0xff26e4, 0xff0000);
+			options.setColors(0x6EC5FF, 0x6EFFC5, 0xFFBC00, 0xFF7700, 0xFF0000);
 			options.setRegion("world");
 
 			return options;
