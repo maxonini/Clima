@@ -7,5 +7,6 @@
 	<classpathentry kind="var" path="JRE_LIB"/>
 	<classpathentry kind="lib" path="/TestDB/war/WEB-INF/lib/gwt-visualization-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Valérie/Downloads/gwt-visualization-1.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Max Meier/Desktop/gwt-slider-bar-1.0.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
