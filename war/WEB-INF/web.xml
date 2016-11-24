@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+<!--  <servlet>  -->
+<!--     <servlet-name>GreetingServiceImpl</servlet-name> -->
+<!--     <servlet-class>com.climattention.server.GreetingServiceImpl</servlet-class> -->
+<!--   </servlet> -->
+  
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>GreetingServiceImpl</servlet-name> -->
+<!--     <url-pattern>/climattention/datapoint</url-pattern> -->
+<!--   </servlet-mapping>  -->
+  
+<!--   <servlet>  -->
+<!--     <servlet-name>ClimaServiceImpl</servlet-name> -->
+<!--     <servlet-class>com.climattention.server.ClimaServiceImpl</servlet-class> -->
+<!--   </servlet> -->
+  
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>ClimaServiceImpl</servlet-name> -->
+<!--     <url-pattern>/climattention/averageYear</url-pattern>	 -->
+<!--   </servlet-mapping>  -->
+
+<!--  <listener> -->
+<!-- 	<listener-class> -->
+<!--              com.climattention.server.ContextListener -->
+<!--         </listener-class> -->
+<!--    </listener> -->
+
+
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Climattention.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>
