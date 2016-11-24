@@ -1,2 +1,0 @@
-serviceClass: com.climattention.client.GreetingService
-path: 4B1A3C4EB51DA60DB4D57337D8C2843C.gwt.rpc
