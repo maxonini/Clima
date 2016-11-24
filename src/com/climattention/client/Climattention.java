@@ -101,9 +101,9 @@ public class Climattention implements EntryPoint {
 	//Create two tabs of the tab panel to switch between the map/table view 
 	VerticalPanel mapViewLayout = new VerticalPanel();
 	VerticalPanel tableViewLayout = new VerticalPanel();
-
-	tabPanel.add(mapViewLayout, "Map View");
+	
 	tabPanel.add(tableViewLayout, "Table View");
+	tabPanel.add(mapViewLayout, "Map View");
 	tabPanel.setWidth("90%");
 	
 	
