@@ -1,3 +1,0 @@
-# Module climattention
-# RPC service class, partial path of RPC policy file
-com.climattention.client.GreetingService, 4B1A3C4EB51DA60DB4D57337D8C2843C.gwt.rpc
