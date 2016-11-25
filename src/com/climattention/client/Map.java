@@ -33,26 +33,22 @@ public class Map implements Ivis{
 	public Widget getVis(final VerticalPanel verticalPanel) {
 		Runnable onLoadCallback = new Runnable(){
 			
-			
 			/**
-			 * This method uses he gwt-visualization-1.1.2 libarary to visualize the climate data on to a map
+			 * This method uses he gwt-visualization-1.1.2 libarary 
 			 * 
 			 * @return visualized map widget
 			 */
 			@Override
 			public void run() {
-				
-				// Building 
+			
 				dataTable = DataTable.create();
 				dataTable.addColumn(ColumnType.STRING, "Country");
 				dataTable.addColumn(ColumnType.NUMBER, "Temperature");
-				//dataTable.addColumn(ColumnType.STRING, "Precise Temperature");
 				
 				dataTable.addRows(climateData.length);
 				for (int i = 0; i < climateData.length; i++){
 					dataTable.setValue(i, 0, climateData[i].getCountry());
 					dataTable.setValue(i, 1, climateData[i].getTemperature());
-					//dataTable.setValue(i, 2, "Chocolate" + climateData[i].getTemperature());
 				}
 				
 				options = GeoMap.Options.create();
@@ -77,10 +73,7 @@ public class Map implements Ivis{
 	}
 
 	/**
-	 * Removes the current climate data from the map and adds the new to be visualized climate data to the
-	 * mapvisualization object. To get he new visualization the method getVisualization(VerticalPanel verticalPanel)
-	 * must be called
-	 * 
+	 * reloads the data and updates the map with the new temperatures
 	 * @return void
 	 */
 	@Override

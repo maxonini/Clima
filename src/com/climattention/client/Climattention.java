@@ -172,7 +172,7 @@ public class Climattention implements EntryPoint {
 	}
 	
 
-private VerticalPanel createTable(VerticalPanel tableViewLayout){
+	private VerticalPanel createTable(VerticalPanel tableViewLayout){
 		
 		// Create Horizontal Customize Table
 		HorizontalPanel customizePanel = new HorizontalPanel();
