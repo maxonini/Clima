@@ -5,7 +5,7 @@
 h1 {
   font-size: 4em;
   font-weight: bold;
-  color: #008000;
+  color: #c0c0c0;
   margin: 40px 0px 70px;
   text-align: center;
 }
@@ -19,7 +19,18 @@ h1 {
 .gwt-DialogBox {
   width: 400px;
 }
-
+.mapLabel{
+	 text-align: center;
+	
+}
+.mapLabel{
+	 text-align: center;
+	
+}
+.halp{
+	  padding: 2px;
+      margin-bottom:6px;
+}
 .dialogVPanel {
   margin: 5px;
 }

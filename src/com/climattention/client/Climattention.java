@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -22,6 +23,7 @@ import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.kiouri.sliderbar.client.solution.simplehorizontal.SliderBarSimpleHorizontal;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -32,6 +34,9 @@ public class Climattention implements EntryPoint {
 	
 	private static final double INIT_MIN_UNCERTAIN = 0.0;
 	private static final double INIT_MAX_UNCERTAIN = 0.5;
+	
+	private  FlowPanel sliderPanel = new  FlowPanel();
+	private Label halp = new Label("Kann jemand das diesen Slider in  Mapview einfuegen?");
 	
 	private VerticalPanel mapPanel = new VerticalPanel();
 	private VerticalPanel tablePanel = new VerticalPanel();
@@ -52,6 +57,9 @@ public class Climattention implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 		
+		// SliderGenerierung
+		SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(5, "60%", true);
+		sliderPanel.add(slider);
 		
 		createUserInterface();
 		
@@ -86,11 +94,13 @@ public class Climattention implements EntryPoint {
 	private void createUserInterface(){
 	
 		mainPanel = new VerticalPanel();
-		mainPanel.setWidth("100%");
+		mainPanel.setWidth("75%");
 		
 		/*attach the main panel to the root panel*/
 		RootPanel.get().add(mainPanel);
 	
+		// gehört nicht hier her
+		mainPanel.add(sliderPanel); halp.addStyleName("halp");mainPanel.add(halp);
 		/**
 		 * Create the tab panels of UI
 		 * 
@@ -124,23 +134,17 @@ public class Climattention implements EntryPoint {
 		//Creating TableViewLayout
 		tableViewLayout= createTable(tableViewLayout);
 		
-		Label dataSourceLabel = new Label("Source of raw data: Berkeley Earth");
-		dataSourceLabel.setStyleName("sourceLabel");
+
 	
 		//Create an anchor to show the link to the external source
-		Anchor sourceAnchor = new Anchor("http://www.berkeleyearth.org", "http://www.berkeleyearth.org");
-		sourceAnchor.setStyleName("sourceLabel");
+		Anchor sourceAnchor = new Anchor("Data source ", "http://www.ifi.uzh.ch/en/rerg/courses/hs16/se.html");
+		sourceAnchor.setWidth("2em");
 		
-		
-		//Create label to show the last update of the data source
-		Label updateSourceLabel = new Label("Last data update: 01.08.2013"); //do we have to to mention last date of measurement or last upload of the csv file?
-		updateSourceLabel.setStyleName("sourceLabel");
 	
 		//Create vertical panel to show the data source and the link one over another and add the label and the anchor to it 
 		VerticalPanel sourcePanel = new VerticalPanel();
-		sourcePanel.add(dataSourceLabel);
 		sourcePanel.add(sourceAnchor);
-		sourcePanel.add(updateSourceLabel);
+
 	
 		//Add source panel to the main panel
 		mainPanel.add(sourcePanel);
