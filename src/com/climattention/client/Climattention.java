@@ -36,7 +36,7 @@ public class Climattention implements EntryPoint {
 	private static final double INIT_MAX_UNCERTAIN = 0.5;
 	
 	private  FlowPanel sliderPanel = new  FlowPanel();
-	private Label halp = new Label("Kann jemand das diesen Slider in  Mapview einfuegen?");
+	private Label halp = new Label("Kann jemand diesen Slider in  Mapview einfuegen?");
 	
 	private VerticalPanel mapPanel = new VerticalPanel();
 	private VerticalPanel tablePanel = new VerticalPanel();
@@ -138,7 +138,7 @@ public class Climattention implements EntryPoint {
 	
 		//Create an anchor to show the link to the external source
 		Anchor sourceAnchor = new Anchor("Data source ", "http://www.ifi.uzh.ch/en/rerg/courses/hs16/se.html");
-		sourceAnchor.setWidth("2em");
+		sourceAnchor.setSize("10px", "10px");
 		
 	
 		//Create vertical panel to show the data source and the link one over another and add the label and the anchor to it 
@@ -154,8 +154,8 @@ public class Climattention implements EntryPoint {
 	
 	private VerticalPanel createMap(VerticalPanel Vertmap){
 		
-		Label mapLabel = new Label("Map");
-		mapLabel.setStyleName("titleLabel");
+		Label mapLabel = new Label("Clima Map");
+		mapLabel.setStyleName("centered");
 		Vertmap.add(mapLabel);
 		
 		HorizontalPanel showMap = new HorizontalPanel();
@@ -390,14 +390,13 @@ private VerticalPanel createTable(VerticalPanel tableViewLayout){
 		 * */
 
 		Label tableLabel = new Label("Climate Data Table");
-		tableLabel.setStyleName("titleLabel");
+		tableLabel.setStyleName("centered");
 		
 	
 		HorizontalPanel tableView = new HorizontalPanel();
 			
 		Button exportCSV = new Button("Export as CSV");
-		exportCSV.setWidth("120px");
-		
+
 		tableView.add(tablePanel);
 		tablePanel.setSpacing(30);
 		tableView.add(exportCSV);
@@ -406,12 +405,12 @@ private VerticalPanel createTable(VerticalPanel tableViewLayout){
 		tableViewLayout.add(tableView);
 		
 		Label customizeLabel = new Label("Customize table ");
-		customizeLabel.setStyleName("panelLabel");
+		customizeLabel.setStyleName("centered");
 		tableViewLayout.add(customizeLabel);
 		tableViewLayout.add(customizePanel);
 
 		Label filterLabel = new Label("Filter data ");
-		filterLabel.setStyleName("panelLabel");
+		filterLabel.setStyleName("centered");
 		tableViewLayout.add(filterLabel);
 		tableViewLayout.add(filterPanel);
 		
