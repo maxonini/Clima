@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Sorter implements Serializable{
 
 	/**
-	 * 
+	 * implements the functions to get and set the attributes for the filtration of the table
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -16,6 +16,8 @@ public class Sorter implements Serializable{
 	private double minUncert = 0;
 	private String city = null;
 	private String country = null;
+	
+	
 	public int getStartYear() {
 		return startYear;
 	}

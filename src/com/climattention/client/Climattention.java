@@ -85,86 +85,78 @@ public class Climattention implements EntryPoint {
 
 	private void createUserInterface(){
 	
-	mainPanel = new VerticalPanel();
-	mainPanel.setWidth("100%");
-	/*attach the main panel to the root panel*/
-	RootPanel.get().add(mainPanel);
-
-	/**
-	 * Create the tab panels of UI
-	 * 
-	 */
-	//Create the tab panel which is contained in the main vertical panel
-	TabPanel tabPanel = new TabPanel();
-	mainPanel.add(tabPanel);
-
-	//Create two tabs of the tab panel to switch between the map/table view 
-	VerticalPanel mapViewLayout = new VerticalPanel();
-	VerticalPanel tableViewLayout = new VerticalPanel();
+		mainPanel = new VerticalPanel();
+		mainPanel.setWidth("100%");
+		
+		/*attach the main panel to the root panel*/
+		RootPanel.get().add(mainPanel);
 	
-	tabPanel.add(tableViewLayout, "Table View");
-	tabPanel.add(mapViewLayout, "Map View");
-	tabPanel.setWidth("90%");
+		/**
+		 * Create the tab panels of UI
+		 * 
+		 */
+		//Create the tab panel which is contained in the main vertical panel
+		TabPanel tabPanel = new TabPanel();
+		mainPanel.add(tabPanel);
 	
+		//Create two tabs of the tab panel to switch between the map/table view 
+		VerticalPanel mapViewLayout = new VerticalPanel();
+		VerticalPanel tableViewLayout = new VerticalPanel();
+		
+		tabPanel.add(tableViewLayout, "Table View");
+		tabPanel.add(mapViewLayout, "Map View");
+		tabPanel.setWidth("90%");
+		
+		
 	
-
-	//use the first tab as default 
-	tabPanel.selectTab(0);
+		//use the first tab as default 
+		tabPanel.selectTab(0);
+		
+		Window.alert("Test CreateUserInterface");
+		
+		//Creating MapView Layout
+		mapViewLayout = createMap(mapViewLayout);
+		
+		
+		Window.alert("Test After CreateMap");
+		
+		
+		//Creating TableViewLayout
+		tableViewLayout= createTable(tableViewLayout);
+		
+		Label dataSourceLabel = new Label("Source of raw data: Berkeley Earth");
+		dataSourceLabel.setStyleName("sourceLabel");
 	
-	Window.alert("Test CreateUserInterface");
+		//Create an anchor to show the link to the external source
+		Anchor sourceAnchor = new Anchor("http://www.berkeleyearth.org", "http://www.berkeleyearth.org");
+		sourceAnchor.setStyleName("sourceLabel");
+		
+		
+		//Create label to show the last update of the data source
+		Label updateSourceLabel = new Label("Last data update: 01.08.2013"); //do we have to to mention last date of measurement or last upload of the csv file?
+		updateSourceLabel.setStyleName("sourceLabel");
 	
-	//Creating MapView Layout
-	mapViewLayout = createMap(mapViewLayout);
+		//Create vertical panel to show the data source and the link one over another and add the label and the anchor to it 
+		VerticalPanel sourcePanel = new VerticalPanel();
+		sourcePanel.add(dataSourceLabel);
+		sourcePanel.add(sourceAnchor);
+		sourcePanel.add(updateSourceLabel);
 	
-	
-	Window.alert("Test After CreateMap");
-	
-	
-	//Creating TableViewLayout
-	tableViewLayout= createTable(tableViewLayout);
-	
-	Label dataSourceLabel = new Label("Source of raw data: Berkeley Earth");
-	dataSourceLabel.setStyleName("sourceLabel");
-
-	//Create an anchor to show the link to the external source
-	Anchor sourceAnchor = new Anchor("http://www.berkeleyearth.org", "http://www.berkeleyearth.org");
-	sourceAnchor.setStyleName("sourceLabel");
-	
-	
-	
-	//Create label to show the last update of the data source
-	Label updateSourceLabel = new Label("Last data update: 01.08.2013"); //do we have to to mention last date of measurement or last upload of the csv file?
-	updateSourceLabel.setStyleName("sourceLabel");
-
-	//Create vertical panel to show the data source and the link one over another and add the label and the anchor to it 
-	VerticalPanel sourcePanel = new VerticalPanel();
-	sourcePanel.add(dataSourceLabel);
-	sourcePanel.add(sourceAnchor);
-	sourcePanel.add(updateSourceLabel);
-
-	//Add source panel to the main panel
-	mainPanel.add(sourcePanel);
+		//Add source panel to the main panel
+		mainPanel.add(sourcePanel);
 	
 	}
 
 	
 	private VerticalPanel createMap(VerticalPanel Vertmap){
 		
-		
-		
-		
-		
 		Label mapLabel = new Label("Map");
 		mapLabel.setStyleName("titleLabel");
 		Vertmap.add(mapLabel);
 		
-		
-
 		HorizontalPanel showMap = new HorizontalPanel();
 		showMap.add(mapPanel); 
 		showMap.setSpacing(30);
-		
-		
 		
 		Vertmap.add(showMap);
 		
@@ -176,15 +168,9 @@ public class Climattention implements EntryPoint {
 	}
 	
 
-
-	
-	
 private VerticalPanel createTable(VerticalPanel tableViewLayout){
 		
-		
-		/** Create Horizontal Customize Table
-		 * 
-		 */
+		// Create Horizontal Customize Table
 		HorizontalPanel customizePanel = new HorizontalPanel();
 		customizePanel.setStyleName("paddedHorizontalPanel");
 		customizePanel.setSpacing(25);
@@ -225,21 +211,17 @@ private VerticalPanel createTable(VerticalPanel tableViewLayout){
 		showMax.setValue(false);
 		showMin.setValue(false);
 		
-		/**
-		 * Create Filter Data Table
-		 */
-		/*Create horizontal panel for the filter options (filters for location, temperature and precision)*/
+	
+		//Create horizontal panel for the filter options (filters for location, temperature and precision)
 
 		HorizontalPanel filterPanel = new HorizontalPanel();
 		filterPanel.setStyleName("paddedHorizontalPanel");
 		filterPanel.setSpacing(25);
 
 		// Create vertical panel for the city and country filters
-
 		VerticalPanel locationFilter = new VerticalPanel();
 
 		//Create country filter panel
-
 		HorizontalPanel countryFilter = new HorizontalPanel();
 
 		Label countryLabel = new Label("Select country");
@@ -419,12 +401,6 @@ private VerticalPanel createTable(VerticalPanel tableViewLayout){
 
 		tableViewLayout.add(tableView);
 		
-		
-		/**
-		 * Assemble the whole table view panel 
-		 * 
-		 * */
-
 		Label customizeLabel = new Label("Customize table ");
 		customizeLabel.setStyleName("panelLabel");
 		tableViewLayout.add(customizeLabel);
@@ -444,7 +420,9 @@ private VerticalPanel createTable(VerticalPanel tableViewLayout){
 	}
 
 
-	
+	/**
+	 * reloads the table with the new filter set in sorters
+	 */
 	private void reloadTable() {
 		if (greetService==null) {
 			greetService = GWT.create(GreetingService. class);
@@ -468,28 +446,112 @@ private VerticalPanel createTable(VerticalPanel tableViewLayout){
 	}
 	
 	
+	
+	/** 
+	 * generates a new filter by adding the value "UncertaintyFrom" set in textbox as minUncertainty to sorters 
+	 * works only if number is entered
+	*/
+	
 	private void addUncertaintyFromSorter(){
+		if(uncertaintyFrom.getText()!= null) {
+			Sorter newSorter;
+			if(sorters.size() == 0) {
+				newSorter = new Sorter();
+				newSorter.setMinUncert(Double.parseDouble(uncertaintyFrom.getText()));
+				sorters.add(newSorter);
+			} else {
+				newSorter = sorters.get(0);	
+				newSorter.setMinUncert(Double.parseDouble(uncertaintyFrom.getText()));
+			}
+			reloadTable();
+		} 
 		
 		
 	}
+	
+	/** 
+	 * generates a new filter by adding the value "UncertaintyTo" set in textbox as maxUncertainty to sorters 
+	*/
 	private void addUncertaintyToSorter(){
-		
+		if(uncertaintyTo.getText() != null) {
+			Sorter newSorter;
+			if(sorters.size() == 0) {
+				newSorter = new Sorter();
+				newSorter.setMaxUncert(Double.parseDouble(uncertaintyTo.getText()));
+				sorters.add(newSorter);
+			} else {
+				newSorter = sorters.get(0); 
+				newSorter.setMaxUncert(Double.parseDouble(uncertaintyTo.getText()));
+			}
+			reloadTable();
+		}
 		
 	}
-	private void addYearToSorter(){
-		
-		
-	}
-	private void addCityNameSorter(){
 	
-	
-	}
+	/** 
+	 * generates a new filter by adding the value "YearFrom" set in textbox to sorters 
+	*/
 	private void addYearFromSorter(){
+		if(yearFrom.getText() != null) {
+			Sorter newSorter;
+			if(sorters.size()== 0){
+				newSorter = new Sorter();
+				newSorter.setStartYear(Integer.parseInt(yearFrom.getText()));
+				sorters.add(newSorter);
+			} else {
+				newSorter = sorters.get(0);
+				newSorter.setStartYear(Integer.parseInt(yearFrom.getText()));
+			}
+			reloadTable();
+			
+		}
 		
+		
+	}	
+	
+	/** 
+	 * generates a new filter by adding the value "YearTo" set in textbox to sorters 
+	*/
+	private void addYearToSorter(){
+		if (yearTo.getText()!=null) {
+			Sorter newSorter;
+			if (sorters.size()==0) {
+				newSorter = new Sorter();
+				newSorter.setEndYear(Integer.parseInt(yearTo.getText()));
+				sorters.add(newSorter);
+			} else {
+				newSorter = sorters.get(0);
+				newSorter.setEndYear(Integer.parseInt(yearTo.getText()));
+			}
+			reloadTable();
+}
 		
 	}
-	private void addCountryNameSorter(){
 	
+	/** 
+	 * generates a new filter by adding the value "cityName" set in textbox to sorters 
+	*/
+	
+	private void addCityNameSorter(){
+		if (cityName.getText()!=null) {
+			Sorter newFilter = new Sorter();
+			newFilter.setCity(cityName.getText());
+			sorters.add(newFilter);
+			reloadTable();
+}
+		
+	}
+	
+	/** 
+	 * generates a new filter by adding the value "countryName" set in textbox to sorters 
+	*/
+	private void addCountryNameSorter(){
+		if (countryName.getText()!=null) {
+			Sorter newFilter = new Sorter();
+			newFilter.setCountry(countryName.getText());
+			sorters.add(newFilter);
+			reloadTable();
+}
 	
 	}
 	
