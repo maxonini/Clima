@@ -58,6 +58,7 @@ public class Map implements Ivis{
 				options.setHeight(mapHeight);
 				options.setShowZoomOut(true);
 				options.setShowLegend(true);
+				options.setColors(0x76F7FF,0x64FFCC,0x4EE262,0xFFAB00,0xFF0000);
 				geomap = new GeoMap(dataTable, options);
 				
 				verticalPanel.clear();
