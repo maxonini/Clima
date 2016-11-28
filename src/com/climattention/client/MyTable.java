@@ -67,6 +67,10 @@ public class MyTable extends Composite implements Ivis {
 		data = newData;		
 	}
 	
+	public Datapoint[] getData(){
+		return (Datapoint[])data;
+	}
+	
 	
 	
 	
