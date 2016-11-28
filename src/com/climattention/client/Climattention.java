@@ -323,32 +323,11 @@ public class Climattention implements EntryPoint {
 
 		// Create uncertainty filter
 		VerticalPanel uncertaintyFilter = new VerticalPanel();
-
-		HorizontalPanel uncertaintyFromFilter = new HorizontalPanel();
-
-		Label uncertaintyFromLabel = new Label("Uncertainty from:");
-		uncertaintyFromLabel.setStyleName("filterLabel");
-		uncertaintyFromLabel.setWidth("120px");
-
-		uncertaintyFrom = new TextBox();
-		uncertaintyFrom.setText(Double.toString(INIT_MIN_UNCERTAIN));
-		Button addUncertaintyFromButton = new Button("Add");
-		addUncertaintyFromButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event){
-				addUncertaintyFromSorter();
-			}
-		});
-
-		uncertaintyFromFilter.add(uncertaintyFromLabel);
-		uncertaintyFromFilter.add(uncertaintyFrom);
-		uncertaintyFromFilter.add(addUncertaintyFromButton);
-
 		HorizontalPanel uncerataintyToFilter = new HorizontalPanel();
 
-		Label uncertaintyToLabel = new Label("Uncertainty to:");
-		uncertaintyToLabel.setStyleName("filterLabel");
-		uncertaintyToLabel.setWidth("120px");
+		Label uncertaintyToLabel = new Label(" Maximum Uncertainty :");
+		uncertaintyToLabel.setStyleName("centered");
+		uncertaintyToLabel.setWidth("180px");
 
 		uncertaintyTo = new TextBox();
 		uncertaintyTo.setValue(Double.toString(INIT_MAX_UNCERTAIN));
