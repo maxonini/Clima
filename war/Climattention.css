@@ -20,19 +20,50 @@ h1 {
   width: 400px;
 }
 .mapLabel{
+font-size: 150%;
 	 text-align: center;
 	
 }
-.mapLabel{
-	 text-align: center;
+.source{
+	
+	font-size: 150%;
+	text-align: center;
 	
 }
 .centered{
 	 text-align: center;
-	
-}
+	 font-size: 150%;
+	 border:2px solid #00CCFF;
 
+}
+.gwt-Label{ 
+   font-size: 110%; 
+   font-weight: bold;
+
+}
+.paddedHorizontalPanel{
+	padding: 60px;
+}
+.filterLabel{
+	
+	font-size: 110%;
+		
+}
+.exportCSV{
+	text-align: center;
+	margin-left: 550px;
+	margin-top : 50px;
+}
+.gwt-CheckBox{
+   text-align: center;
+   font-size: 130%;
+   width:   30px;
+   height:  30px;
+   padding: 0px;
+   margin:  0px;
+}
 .halp{
+	  font-size: 150%;
 	  padding: 2px;
       margin-bottom:6px;
 }

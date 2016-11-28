@@ -133,7 +133,7 @@ public class Climattention implements EntryPoint {
 	
 		//Create an anchor to show the link to the external source
 		Anchor sourceAnchor = new Anchor("Data source ", "http://www.ifi.uzh.ch/en/rerg/courses/hs16/se.html");
-		sourceAnchor.setSize("10px", "10px");
+		sourceAnchor.setStyleName("source");
 		
 	
 		//Create vertical panel to show the data source and the link one over another and add the label and the anchor to it 
@@ -178,8 +178,7 @@ public class Climattention implements EntryPoint {
 		// Create Horizontal Customize Table
 		HorizontalPanel customizePanel = new HorizontalPanel();
 		customizePanel.setStyleName("paddedHorizontalPanel");
-		customizePanel.setSpacing(25);
-
+		
 		//Create check-box widgets to select attributes
 		CheckBox showCountry = new CheckBox("show country");
 		CheckBox showCity = new CheckBox("show city");
@@ -212,9 +211,9 @@ public class Climattention implements EntryPoint {
 		showUncertainty.setValue(true); 
 		showLongitude.setValue(true);
 		showLatitude.setValue(true);
-		showAvg.setValue(false);
-		showMax.setValue(false);
-		showMin.setValue(false);
+		showAvg.setValue(true);
+		showMax.setValue(true);
+		showMin.setValue(true);
 		
 	
 		//Create horizontal panel for the filter options (filters for location, temperature and precision)
@@ -397,10 +396,13 @@ public class Climattention implements EntryPoint {
 		HorizontalPanel tableView = new HorizontalPanel();
 			
 		Button exportCSV = new Button("Export as CSV");
-
+		HorizontalPanel exportPanel = new HorizontalPanel();
+		exportPanel.add(exportCSV);
+		exportPanel.setStyleName("exportCSV");
+		
 		tableView.add(tablePanel);
 		tablePanel.setSpacing(30);
-		tableView.add(exportCSV);
+		tableView.add(exportPanel);
 
 
 		tableViewLayout.add(tableView);
