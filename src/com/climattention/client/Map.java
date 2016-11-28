@@ -1,12 +1,16 @@
 package com.climattention.client;
 
 import com.climattention.shared.Datapoint;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.GeoMap;
+import com.kiouri.sliderbar.client.solution.simplehorizontal.SliderBarSimpleHorizontal;
 
 
 public class Map implements Ivis{
@@ -18,6 +22,10 @@ public class Map implements Ivis{
 	private DataTable dataTable;
 	private GeoMap.Options options;
 	private GeoMap geomap;
+	private FlowPanel sliderPanel = new  FlowPanel();
+	private Label halp = new Label("Hier oben ist ein Slider, man sieht ihn aber nicht :(");
+	SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(50, "60%", true);
+
 	
 	private Datapoint[] climateData;
 	
@@ -61,8 +69,14 @@ public class Map implements Ivis{
 				options.setColors(0x76F7FF,0x64FFCC,0x4EE262,0xFFAB00,0xFF0000);
 				geomap = new GeoMap(dataTable, options);
 				
+				//slider.drawMarks("red", 100);
+				sliderPanel.add(slider);
+				sliderPanel.add(halp);
+				
 				verticalPanel.clear();
 				verticalPanel.add(geomap);
+				verticalPanel.add(sliderPanel);
+
 				
 				System.out.println("dataTable done");
 				

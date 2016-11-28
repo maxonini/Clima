@@ -58,7 +58,8 @@ public class Climattention implements EntryPoint {
 	public void onModuleLoad() {
 		
 		// SliderGenerierung
-		SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(5, "60%", true);
+		SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(50, "60%", true);
+		slider.drawMarks("grey", 100);
 		sliderPanel.add(slider);
 		
 		createUserInterface();
@@ -99,8 +100,7 @@ public class Climattention implements EntryPoint {
 		/*attach the main panel to the root panel*/
 		RootPanel.get().add(mainPanel);
 	
-		// gehört nicht hier her
-		mainPanel.add(sliderPanel); halp.addStyleName("halp");mainPanel.add(halp);
+
 		/**
 		 * Create the tab panels of UI
 		 * 
@@ -148,6 +148,8 @@ public class Climattention implements EntryPoint {
 	
 		//Add source panel to the main panel
 		mainPanel.add(sourcePanel);
+		// gehört nicht hier her
+		mainPanel.add(sliderPanel); halp.addStyleName("halp");mainPanel.add(halp);
 	
 	}
 

@@ -16,12 +16,12 @@ public class ClimattentionTest {
 	
 	@Test
 	private void testCreateUserInterface() {
-			fail("Not yet implemented");
+		fail("Not yet implemented");
 	}
 	
 	@Test
-	private void testCreateMap(VerticalPanel Vertmap){
-	
+	private void testCreateMap(){
+
 	}
 	
 	@Test
