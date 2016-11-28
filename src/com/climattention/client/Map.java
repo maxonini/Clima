@@ -24,9 +24,7 @@ public class Map implements Ivis{
 	private GeoMap geomap;
 	private FlowPanel sliderPanel = new  FlowPanel();
 	private Label halp = new Label("Hier oben ist ein Slider, man sieht ihn aber nicht :(");
-	SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(50, "60%", true);
 
-	
 	private Datapoint[] climateData;
 	
 	public Map(){}
@@ -42,7 +40,7 @@ public class Map implements Ivis{
 		Runnable onLoadCallback = new Runnable(){
 			
 			/**
-			 * This method uses he gwt-visualization-1.1.2 libarary 
+			 * This method uses he gwt-visualization-1.1.2 library 
 			 * 
 			 * @return visualized map widget
 			 */
@@ -69,10 +67,13 @@ public class Map implements Ivis{
 				options.setColors(0x76F7FF,0x64FFCC,0x4EE262,0xFFAB00,0xFF0000);
 				geomap = new GeoMap(dataTable, options);
 				
-				//slider.drawMarks("red", 100);
+				SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(50, "60%", true);
+				slider.drawMarks("red", 100);
 				sliderPanel.add(slider);
 				sliderPanel.add(halp);
 				
+				
+			
 				verticalPanel.clear();
 				verticalPanel.add(geomap);
 				verticalPanel.add(sliderPanel);

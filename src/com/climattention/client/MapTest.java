@@ -1,13 +1,12 @@
 package com.climattention.client;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 import com.climattention.shared.Datapoint;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MapTest {
+public class MapTest{
 
 	@Test
 	public void testGetVis() {

@@ -36,7 +36,7 @@ public class Climattention implements EntryPoint {
 	private static final double INIT_MAX_UNCERTAIN = 0.5;
 	
 	private  FlowPanel sliderPanel = new  FlowPanel();
-	private Label halp = new Label("Kann jemand diesen Slider in  Mapview einfuegen?");
+	private Label halp = new Label("1900");
 	
 	private VerticalPanel mapPanel = new VerticalPanel();
 	private VerticalPanel tablePanel = new VerticalPanel();
@@ -75,19 +75,13 @@ public class Climattention implements EntryPoint {
 		Datapoint myData1[] = new Datapoint[1];
 		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", 456, 5678);
 		
-		
-		
 		myData1[0] = testData1;
-		
-		Window.alert("Test 1");
 		
 		
 		myMap = new Map();
 		myMap.reloadData(myData1);
 		
 		myMap.getVis(mapPanel);
-		
-		Window.alert("On module load finished");
 		
 	}
 	
@@ -122,13 +116,12 @@ public class Climattention implements EntryPoint {
 		//use the first tab as default 
 		tabPanel.selectTab(0);
 		
-		Window.alert("Test CreateUserInterface");
 		
 		//Creating MapView Layout
 		mapViewLayout = createMap(mapViewLayout);
 		
 		
-		Window.alert("Test After CreateMap");
+		//Window.alert("Test After CreateMap");
 		
 		
 		//Creating TableViewLayout
@@ -149,7 +142,9 @@ public class Climattention implements EntryPoint {
 		//Add source panel to the main panel
 		mainPanel.add(sourcePanel);
 		// gehört nicht hier her
-		mainPanel.add(sliderPanel); halp.addStyleName("halp");mainPanel.add(halp);
+		mainPanel.add(sliderPanel);
+		halp.addStyleName("halp");
+		mainPanel.add(halp);
 	
 	}
 
@@ -166,7 +161,7 @@ public class Climattention implements EntryPoint {
 		
 		Vertmap.add(showMap);
 		
-		Window.alert("Test CreateMap");
+		//Window.alert("Test CreateMap");
 		
 		return Vertmap;
 		
