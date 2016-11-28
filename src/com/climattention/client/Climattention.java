@@ -345,9 +345,9 @@ public class Climattention implements EntryPoint {
 
 		HorizontalPanel uncerataintyToFilter = new HorizontalPanel();
 
-		Label uncertaintyToLabel = new Label("Uncertainty to:");
+		Label uncertaintyToLabel = new Label("Maximum Uncertainty:");
 		uncertaintyToLabel.setStyleName("filterLabel");
-		uncertaintyToLabel.setWidth("120px");
+		uncertaintyToLabel.setWidth("160px");
 
 		uncertaintyTo = new TextBox();
 		uncertaintyTo.setValue(Double.toString(INIT_MAX_UNCERTAIN));
@@ -366,7 +366,7 @@ public class Climattention implements EntryPoint {
 		uncerataintyToFilter.add(addUncertaintyToButton);
 
 		// Assemble uncertainty filter panel
-		uncertaintyFilter.add(uncertaintyFromFilter);
+//		uncertaintyFilter.add(uncertaintyFromFilter);
 		uncertaintyFilter.add(uncerataintyToFilter);
 
 		//Creates the button that resets the filters
