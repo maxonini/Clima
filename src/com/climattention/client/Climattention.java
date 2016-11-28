@@ -345,6 +345,7 @@ public class Climattention implements EntryPoint {
 		uncerataintyToFilter.add(addUncertaintyToButton);
 
 		// Assemble uncertainty filter panel
+		uncertaintyFilter.add(uncertaintyFromFilter);
 		uncertaintyFilter.add(uncerataintyToFilter);
 
 		//Creates the button that resets the filters
