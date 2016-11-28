@@ -36,7 +36,7 @@ public class Climattention implements EntryPoint {
 	private static final double INIT_MAX_UNCERTAIN = 0.5;
 	
 	private  FlowPanel sliderPanel = new  FlowPanel();
-	private Label halp = new Label("1900");
+
 	
 	private VerticalPanel mapPanel = new VerticalPanel();
 	private VerticalPanel tablePanel = new VerticalPanel();
@@ -58,9 +58,11 @@ public class Climattention implements EntryPoint {
 	public void onModuleLoad() {
 		
 		// SliderGenerierung
+		Label sliderYear = new Label("1900");
 		SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(50, "60%", true);
 		slider.drawMarks("grey", 100);
 		sliderPanel.add(slider);
+	    sliderPanel.add(sliderYear);
 		
 		createUserInterface();
 		
@@ -140,11 +142,13 @@ public class Climattention implements EntryPoint {
 
 	
 		//Add source panel to the main panel
-		mainPanel.add(sourcePanel);
+		
 		// gehört nicht hier her
+		
+	
+	
 		mainPanel.add(sliderPanel);
-		halp.addStyleName("halp");
-		mainPanel.add(halp);
+		mainPanel.add(sourcePanel);
 	
 	}
 
