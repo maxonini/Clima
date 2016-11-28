@@ -60,6 +60,9 @@ public void setUncertainty(float uncertainty){
 public void setTemperatur(float temperature){
 	this.temperature = temperature;
 	}
+public void setCity(String city){
+	this.city = city;
+	}
 public String getYearAsString(){
 	return year;	
 }
