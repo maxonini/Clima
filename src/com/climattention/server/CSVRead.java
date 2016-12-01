@@ -10,19 +10,21 @@ import com.opencsv.CSVReader;
 
 public class CSVRead {
 	
-	private List<String[]> myData;
+	private List<String[]> myData = new ArrayList<String[]>();
 	private List<Datapoint> myDataParsed = new ArrayList<Datapoint>();
 	
-	
+	@SuppressWarnings("resource")
 	public List<String[]> readCSV(String path){
 		
-		Window.alert("Reading startet");
+		System.out.print("Reading started");
 		
 		try {
-			CSVReader reader = new CSVReader(new FileReader(path));
+			CSVReader reader = new CSVReader(new FileReader(path),CSVParser.DEFAULT_SEPARATOR, CSVParser.DEFAULT_QUOTE_CHARACTER, 1);
+			System.out.print("Reader initialized");
 			myData = reader.readAll();
+			System.out.print("Reading finished");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.print("Reading failed");
 			e.printStackTrace();
 		}
 		
@@ -33,11 +35,10 @@ public class CSVRead {
 	}
 	
 	public List<Datapoint> parseData(){
-		int j=0;
 		for(String[] currArray : myData){
-			Datapoint point = new Datapoint(currArray[0], Float.valueOf(currArray[1]), Float.valueOf(currArray[2]), currArray[3], currArray[4], Float.valueOf(currArray[5]), Float.valueOf(currArray[6]));
-			myDataParsed.set(j, point);
-			j++;
+			Datapoint point = new Datapoint(currArray[0], Float.valueOf(currArray[1]), Float.valueOf(currArray[2]), currArray[3], currArray[4], currArray[5], currArray[6]);
+			myDataParsed.add(point);
+			
 		
 		}
 		return myDataParsed;
