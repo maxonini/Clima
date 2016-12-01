@@ -26,11 +26,11 @@
 <!--     <url-pattern>/climattention/averageYear</url-pattern>	 -->
 <!--   </servlet-mapping>  -->
 
-<!--  <listener> -->
-<!-- 	<listener-class> -->
-<!--              com.climattention.server.ContextListener -->
-<!--         </listener-class> -->
-<!--    </listener> -->
+ <listener> 
+ 	<listener-class> 
+              com.climattention.server.ContextListener 
+         </listener-class>
+    </listener> 
 
 
   
