@@ -85,6 +85,8 @@ public class Climattention implements EntryPoint {
 		
 		myMap.getVis(mapPanel);
 		
+		Window.alert("On module load finished");
+		
 	}
 	
 
@@ -143,7 +145,7 @@ public class Climattention implements EntryPoint {
 	
 		//Add source panel to the main panel
 		
-		// gehört nicht hier her
+		// gehÃ¶rt nicht hier her
 		
 	
 	
@@ -438,10 +440,13 @@ public class Climattention implements EntryPoint {
 		AsyncCallback<Datapoint[]> callback = new AsyncCallback<Datapoint[]>() {
 
 			@Override
-			public void onFailure(Throwable caught) {}
+			public void onFailure(Throwable caught) {
+				Window.alert("RPC failed");
+			}
 
 			@Override
 			public void onSuccess(Datapoint[] result) {
+				Window.alert("RPC successfull");
 				myTable.reloadData(result);
 				myTable.getVis(tablePanel);
 			}
