@@ -8,10 +8,10 @@ import com.climattention.shared.Sorter;
 /**
  * The client-side stub for the RPC service.
  */
-@RemoteServiceRelativePath("datapoint")
+@RemoteServiceRelativePath("climateData")
 public interface GreetingService extends RemoteService {
 	
-	Datapoint[] getDatapoints(Sorter[] sorter);
+	Datapoint[] getClimateData(Sorter[] sorter);
 	
 	
 	

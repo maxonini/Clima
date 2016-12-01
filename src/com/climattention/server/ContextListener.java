@@ -7,6 +7,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.climattention.shared.Datapoint;
+
 
 public class ContextListener implements ServletContextListener {
 
