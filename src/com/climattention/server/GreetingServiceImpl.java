@@ -25,13 +25,14 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			
 			
 			ServletContext context = ContextListener.getContext();
-			List<Datapoint> dataList = (List<Datapoint>) context.getAttribute("myData");
+			List<Datapoint> dataList = (List<Datapoint>)this.getServletContext().getAttribute("climateData");
 			
 			
 			ArrayList<Datapoint> finishedData  = new ArrayList<Datapoint>();
 			
 			
-			return finishedData.toArray(new Datapoint[0]);
+			
+			return dataList.toArray(new Datapoint[0]);
 					
 		}
 
