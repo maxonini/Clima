@@ -7,9 +7,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.climattention.shared.Datapoint;
-import com.google.gwt.core.shared.GWT;
-import com.google.gwt.user.client.Window;
 
 public class ContextListener implements ServletContextListener {
 
@@ -25,25 +22,24 @@ public class ContextListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 		
-		Window.alert("context Initialized");
-		System.out.print("context Initialized");
-		GWT.log("Context Initialized	");
-		
 		context= arg0.getServletContext();
 		ServletContextHold.getInstance(context);
+		
+		System.out.print("context Initialized");
 		
 		List<Datapoint> myData= new ArrayList<Datapoint>(); 
 		
 		CSVRead reader = new CSVRead();
-		reader.readCSV("resources/GlobalLandTemperaturesByMajorCity_v1.csv");
+		//Path might be in need to get fixed, didnt work on my machine with a realtive path
+		String path = "/Climattention/resources/GlobalLandTemperaturesByMajorCity_v1.csv";
+		reader.readCSV(path);
 		myData = (ArrayList<Datapoint>) reader.parseData();
 		
-		arg0.getServletContext().setAttribute("myData", myData);
+		arg0.getServletContext().setAttribute(ContextContent.CLIMATE_DATA, myData);
 
 	}
 	
 	public static ServletContext getContext(){
 		return context;
 	}
-
 }
