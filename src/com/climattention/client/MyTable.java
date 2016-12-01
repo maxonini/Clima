@@ -31,7 +31,7 @@ public class MyTable extends Composite implements Ivis {
 					dataTable.addColumn(ColumnType.STRING, "City");
 					dataTable.addColumn(ColumnType.NUMBER, "Temperature");
 					dataTable.addColumn(ColumnType.NUMBER, "Temperature deviation");
-					dataTable.addColumn(ColumnType.DATE, "Date");
+					dataTable.addColumn(ColumnType.STRING, "Date");
 					dataTable.addColumn(ColumnType.STRING, "Latitude");
 					dataTable.addColumn(ColumnType.STRING, "Longitude");
 					

@@ -75,7 +75,7 @@ public class Climattention implements EntryPoint {
 		
 		
 		Datapoint myData1[] = new Datapoint[1];
-		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", 456, 5678);
+		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", "456","5678");
 		
 		myData1[0] = testData1;
 		
@@ -453,7 +453,7 @@ public class Climattention implements EntryPoint {
 
 		};
 		
-		greetService.getDatapoints(sorters.toArray(new Sorter[0]), callback);
+		greetService.getClimateData(sorters.toArray(new Sorter[0]), callback);
 	}
 	
 	

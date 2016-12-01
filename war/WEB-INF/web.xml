@@ -6,15 +6,15 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
-<!--  <servlet>  -->
-<!--     <servlet-name>GreetingServiceImpl</servlet-name> -->
-<!--     <servlet-class>com.climattention.server.GreetingServiceImpl</servlet-class> -->
-<!--   </servlet> -->
+ <servlet>  
+    <servlet-name>GreetingServiceImpl</servlet-name>
+    <servlet-class>com.climattention.server.GreetingServiceImpl</servlet-class>
+  </servlet>
   
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>GreetingServiceImpl</servlet-name> -->
-<!--     <url-pattern>/climattention/datapoint</url-pattern> -->
-<!--   </servlet-mapping>  -->
+ <servlet-mapping> 
+    <servlet-name>GreetingServiceImpl</servlet-name>
+    <url-pattern>/climattention/climateData</url-pattern>
+  </servlet-mapping> 
   
 <!--   <servlet>  -->
 <!--     <servlet-name>ClimaServiceImpl</servlet-name> -->

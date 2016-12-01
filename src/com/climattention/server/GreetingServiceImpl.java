@@ -17,20 +17,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
 
-	
-	
-
 		@Override
-		public Datapoint[] getDatapoints(Sorter[] sorter) {
+		public Datapoint[] getClimateData(Sorter[] sorter) {
 			
-			
-			ServletContext context = ContextListener.getContext();
 			List<Datapoint> dataList = (List<Datapoint>)this.getServletContext().getAttribute("climateData");
 			
-			
 			ArrayList<Datapoint> finishedData  = new ArrayList<Datapoint>();
-			
-			
 			
 			return dataList.toArray(new Datapoint[0]);
 					

@@ -12,5 +12,5 @@ import com.climattention.shared.Sorter;
 
 public interface GreetingServiceAsync {
 	
-	void getDatapoints(Sorter[] sorter, AsyncCallback<Datapoint[]> callback);
+	void getClimateData(Sorter[] sorter, AsyncCallback<Datapoint[]> callback);
 }
