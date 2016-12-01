@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.climattention.shared.Datapoint;
 import com.google.gwt.user.client.Window;
+import com.opencsv.CSVParser;
 import com.opencsv.CSVReader;
 
 public class CSVRead {

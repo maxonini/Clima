@@ -58,10 +58,33 @@ public class Climattention implements EntryPoint {
 	public void onModuleLoad() {
 		
 		// SliderGenerierung
-		Label sliderYear = new Label("1900");
-		SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(50, "60%", true);
+		final SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(163, "80%", true);
 		slider.drawMarks("grey", 100);
+		
+		Label sliderYear1850=new Label("************1850 ** 1860 ** 1870 ** 1880 ** 1890 ** 1900 ** 1910 ** 1920 ** 1930 ** 1940 ** 1950 ** 1960 ** 1970 ** 1980 ** 1990 ** 2000 ** 2013************");
+		
+		
+		
+		final Label sliderYear = new Label(String.valueOf(slider.getValue()+1850));
+		
+		Button addSliderButton = new Button("Aktualisieren");
+		addSliderButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event){
+				sliderYear.setText(String.valueOf(slider.getValue()+1850));
+			}
+		});
+		
+		
+		
+
+		
 		sliderPanel.add(slider);
+		sliderPanel.add(sliderYear1850);
+		
+		sliderPanel.add(addSliderButton);
+		
+		
 	    sliderPanel.add(sliderYear);
 		
 		createUserInterface();
@@ -75,7 +98,7 @@ public class Climattention implements EntryPoint {
 		
 		
 		Datapoint myData1[] = new Datapoint[1];
-		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", 456, 5678);
+		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", "456", "5678");
 		
 		myData1[0] = testData1;
 		
