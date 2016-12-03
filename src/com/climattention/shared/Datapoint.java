@@ -30,6 +30,9 @@ public class Datapoint implements Serializable {
 	public String getYear(){
 		return year;
 		}
+	public int getYearAsInt(){
+		return Integer.valueOf(date.substring(0, 4));
+	}
 	public String getLongitude(){
 		return longitude;
 		}
