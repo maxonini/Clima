@@ -24,6 +24,8 @@ public class ContextListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
 		
+		AverageYearCreator avgCreator = new AverageYearCreator();
+		
 		context= arg0.getServletContext();
 		ServletContextHold.getInstance(context);
 		
@@ -36,6 +38,11 @@ public class ContextListener implements ServletContextListener {
 		String path = "/Climattention/resources/GlobalLandTemperaturesByMajorCity_v1.csv";
 		reader.readCSV(path);
 		myData = (ArrayList<Datapoint>) reader.parseData();
+		
+		Map<Integer, List<AverageData>> averageDataMap = avgCreator.calculateAveragePerYearAndCountry(myData);
+		averageDataMap = Collections.unmodifiableMap(averageDataMap);
+		
+		arg0.getServletContext().setAttribute(ContextContent.CLIMATE_DATA, myData);
 		
 		arg0.getServletContext().setAttribute(ContextContent.CLIMATE_DATA, myData);
 
