@@ -34,6 +34,7 @@ public class Climattention implements EntryPoint {
 	
 	private static final double INIT_MIN_UNCERTAIN = 0.0;
 	private static final double INIT_MAX_UNCERTAIN = 0.5;
+	private static final int STARTING_YEAR = 2000;
 	
 	private  FlowPanel sliderPanel = new  FlowPanel();
 
@@ -81,28 +82,35 @@ public class Climattention implements EntryPoint {
 		
 	    sliderPanel.add(sliderYear);
 		
-		createUserInterface();
+		
 		
 		// sorter for filtration of table
-		Sorter sort = new Sorter();
-		sort.setMaxUncert(INIT_MAX_UNCERTAIN);
-		sorters.add(sort);
+		createStartingSorters();
 		reloadTable();
 		
-		
+		createUserInterface();
 		// data point for testing
-		Datapoint myData1[] = new Datapoint[1];
-		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", "456", "5678");
-		myData1[0] = testData1;
-		
-		
-		myMap = new Map();
-		myMap.reloadData(myData1);
-		myMap.getVis(mapPanel);
+	
 		
 		Window.alert("On module load finished.");
 		
 	}
+	
+	/**
+	 * Initialize the default sort factors
+	 */
+	private void createStartingSorters(){
+		Sorter sort = new Sorter();
+		sort.setMaxUncert(INIT_MAX_UNCERTAIN);
+		sort.setMinUncert(INIT_MIN_UNCERTAIN);
+		sort.setStartYear(STARTING_YEAR);
+		sort.setEndYear(STARTING_YEAR);
+		sorters.add(sort);
+		
+		
+		
+	}
+	
 	
 
 	private void createUserInterface(){
@@ -164,27 +172,58 @@ public class Climattention implements EntryPoint {
 	
 	}
 
-	
+		/**
+	 * 
+	 * Takes the map panel, sets up the RPC with the default year
+	 * Should get the year from the Slider
+	 * 
+	 * @param vertMap
+	 * @return vertMap
+	 */
 	private VerticalPanel createMap(VerticalPanel Vertmap){
 		
-		Label mapLabel = new Label("Clima Map");
-		mapLabel.setStyleName("centered");
-		Vertmap.add(mapLabel);
+		//Load map with the default startingYear
+		//TODO: Connect slider
+		reloadMap(STARTING_YEAR);
+		
+		
+		Label mapLabel = new Label("Map");
+		mapLabel.setStyleName("titleLabel");
+		vertMap.add(mapLabel);
 		
 		HorizontalPanel showMap = new HorizontalPanel();
 		showMap.add(mapPanel); 
 		showMap.setSpacing(30);
 		
-		Vertmap.add(showMap);
 		
-		//Window.alert("Test CreateMap");
 		
-		return Vertmap;
+
+		FlexTable viewMap = new FlexTable();
+		
+		viewMap.setWidget(0,0,mapPanel); 
+		viewMap.getColumnFormatter().setWidth(1, "100px");
+		viewMap.getColumnFormatter().setWidth(2, "100px");
+
+		viewMap.getCellFormatter().setAlignment(0, 1, HasHorizontalAlignment.ALIGN_RIGHT,HasVerticalAlignment.ALIGN_TOP);
+		viewMap.getCellFormatter().setAlignment(0, 2, HasHorizontalAlignment.ALIGN_RIGHT,HasVerticalAlignment.ALIGN_TOP);
+		
+		vertMap.add(viewMap);
+		
+		return vertMap;
 		
 	
 	}
 	
-
+	/**
+ * 
+ * 
+ * Sets up the Table panel, including all checkBoxes and TextFields
+ * needed for sorting data.
+ * 
+ * 
+ * @param tableViewLayout
+ * @return tableViewLayout
+ */
 	private VerticalPanel createTable(VerticalPanel tableViewLayout){
 		
 		// Create Horizontal Customize Table
@@ -435,7 +474,10 @@ public class Climattention implements EntryPoint {
 
 
 	/**
-	 * reloads the table with the new filter set in sorters
+	 * 
+	 * Creates the RPC for the data, gets the whole data since there are no
+	 * sorting options yet
+	 * 
 	 */
 	private void reloadTable() {
 		if (greetService==null) {
@@ -460,6 +502,34 @@ public class Climattention implements EntryPoint {
 		};
 		
 		greetService.getClimateData(sorters.toArray(new Sorter[0]), callback);
+	}
+	
+	
+	/**
+	 * Creates the RPC for the map data, gets the data avaiable for
+	 * the year given as parameter
+	 * 
+	 * @param year
+	 */
+	private void reloadMap(int year){
+		
+		climaService.getAverageForYear(year,new AsyncCallback<AverageData[]>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				
+				
+			}
+
+			@Override
+			public void onSuccess(AverageData[] result) {
+				myMap.reloadData(result);
+				myMap.getVis(mapPanel);
+				
+			}
+		} );
+		
+		
 	}
 	
 	
