@@ -45,7 +45,7 @@ public class Climattention implements EntryPoint {
 	private MyTable myTable = new MyTable();
 	private GreetingServiceAsync greetService = GWT.create(GreetingService .class);
 	private ArrayList<Sorter> sorters= new ArrayList<Sorter>();
-	private FlexTable currentDisplay;
+	//private FlexTable currentDisplay;
 	
 	TextBox uncertaintyFrom;
 	TextBox uncertaintyTo;
@@ -63,8 +63,6 @@ public class Climattention implements EntryPoint {
 		
 		Label sliderYear1850=new Label("************1850 ** 1860 ** 1870 ** 1880 ** 1890 ** 1900 ** 1910 ** 1920 ** 1930 ** 1940 ** 1950 ** 1960 ** 1970 ** 1980 ** 1990 ** 2000 ** 2013************");
 		
-		
-		
 		final Label sliderYear = new Label(String.valueOf(slider.getValue()+1850));
 		
 		Button addSliderButton = new Button("Aktualisieren");
@@ -76,37 +74,30 @@ public class Climattention implements EntryPoint {
 		});
 		
 		
-		
-
-		
 		sliderPanel.add(slider);
 		sliderPanel.add(sliderYear1850);
 		
 		sliderPanel.add(addSliderButton);
 		
-		
 	    sliderPanel.add(sliderYear);
 		
 		createUserInterface();
 		
-		
+		// sorter for filtration of table
 		Sorter sort = new Sorter();
 		sort.setMaxUncert(INIT_MAX_UNCERTAIN);
 		sorters.add(sort);
 		reloadTable();
 		
 		
-		
+		// data point for testing
 		Datapoint myData1[] = new Datapoint[1];
-
 		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", "456", "5678");
-		
 		myData1[0] = testData1;
 		
 		
 		myMap = new Map();
 		myMap.reloadData(myData1);
-		
 		myMap.getVis(mapPanel);
 		
 		Window.alert("On module load finished");
@@ -168,11 +159,6 @@ public class Climattention implements EntryPoint {
 
 	
 		//Add source panel to the main panel
-		
-		// gehört nicht hier her
-		
-	
-	
 		mainPanel.add(sliderPanel);
 		mainPanel.add(sourcePanel);
 	
@@ -205,7 +191,7 @@ public class Climattention implements EntryPoint {
 		HorizontalPanel customizePanel = new HorizontalPanel();
 		customizePanel.setStyleName("paddedHorizontalPanel");
 		
-		//Create check-box widgets to select attributes
+		//Create check-box widgets to select attributes of table 
 		CheckBox showCountry = new CheckBox("show country");
 		CheckBox showCity = new CheckBox("show city");
 		CheckBox showDate = new CheckBox("show date");
@@ -225,9 +211,9 @@ public class Climattention implements EntryPoint {
 		customizePanel.add(showUncertainty);
 		customizePanel.add(showLongitude);
 		customizePanel.add(showLatitude);
-		customizePanel.add(showAvg); 
-		customizePanel.add(showMax); 
-		customizePanel.add(showMin); 
+		//customizePanel.add(showAvg); 
+		//customizePanel.add(showMax); 
+		//customizePanel.add(showMin); 
 
 		//set default values for each attribute
 		showCountry.setValue(true); 
@@ -239,11 +225,9 @@ public class Climattention implements EntryPoint {
 		showLatitude.setValue(true);
 		showAvg.setValue(true);
 		showMax.setValue(true);
-		showMin.setValue(true);
 		
 	
 		//Create horizontal panel for the filter options (filters for location, temperature and precision)
-
 		HorizontalPanel filterPanel = new HorizontalPanel();
 		filterPanel.setStyleName("paddedHorizontalPanel");
 		filterPanel.setSpacing(25);
@@ -391,7 +375,7 @@ public class Climattention implements EntryPoint {
 		uncerataintyToFilter.add(addUncertaintyToButton);
 
 		// Assemble uncertainty filter panel
-//		uncertaintyFilter.add(uncertaintyFromFilter);
+		//uncertaintyFilter.add(uncertaintyFromFilter);
 		uncertaintyFilter.add(uncerataintyToFilter);
 
 		//Creates the button that resets the filters
@@ -410,7 +394,6 @@ public class Climattention implements EntryPoint {
 		filterPanel.add(resetFilterButton);
 		
 		/**
-		 * 
 		 * Create horizontal panel to place the CellTable with climate data into it
 		 * 
 		 * */
