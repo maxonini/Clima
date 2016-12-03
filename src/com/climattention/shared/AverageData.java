@@ -10,9 +10,14 @@ public class AverageData implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String country;
-	private float averageTemp;
+	private double averageTemp;
 	private int year;
 	
+	public AverageData(String c, double t, int y){
+		country = c;
+		averageTemp = t;
+		year = y;
+	}
 	
 	
 	public String getCountry() {
@@ -21,7 +26,7 @@ public class AverageData implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public float getAverageTemp() {
+	public double getAverageTemp() {
 		return averageTemp;
 	}
 	public void setAverageTemp(float averageTemp) {
