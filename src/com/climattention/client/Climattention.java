@@ -177,10 +177,11 @@ public class Climattention implements EntryPoint {
 	 * Takes the map panel, sets up the RPC with the default year
 	 * Should get the year from the Slider
 	 * 
-	 * @param vertMap
+	 * @param 
+	 
 	 * @return vertMap
 	 */
-	private VerticalPanel createMap(VerticalPanel Vertmap){
+	private VerticalPanel createMap(VerticalPanel VertMap){
 		
 		//Load map with the default startingYear
 		//TODO: Connect slider
