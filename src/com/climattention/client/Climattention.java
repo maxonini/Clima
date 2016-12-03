@@ -98,11 +98,8 @@ public class Climattention implements EntryPoint {
 		
 		
 		Datapoint myData1[] = new Datapoint[1];
-<<<<<<< HEAD
+
 		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", "456", "5678");
-=======
-		Datapoint testData1 = new Datapoint("22-12-2015", 34, 34, "chur", "ch", "456","5678");
->>>>>>> origin/master
 		
 		myData1[0] = testData1;
 		
