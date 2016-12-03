@@ -1,6 +1,7 @@
 package com.climattention.client;
 
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
@@ -18,6 +19,8 @@ public class MyTable extends Composite implements Ivis {
 	private DataTable dataTable;
 	private Table table;
 	private Options options;
+	
+	private Label tableText = new Label("To change the order from ascending to descending or otherwise, click on the particular column title.");
 
 
 	@Override
@@ -51,14 +54,14 @@ public class MyTable extends Composite implements Ivis {
 					table = new Table(dataTable, options);
 					
 					vP.clear();
+					vP.add(tableText);
 					vP.add(table);
 					
 				}
-				
-				
-				
+		
 			};
 			VisualizationUtils.loadVisualizationApi(onLoadCallback, Table.PACKAGE);
+			
 		return vP;
 	}
 

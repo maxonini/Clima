@@ -14,7 +14,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.FlexTable;
+//import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -100,7 +100,7 @@ public class Climattention implements EntryPoint {
 		myMap.reloadData(myData1);
 		myMap.getVis(mapPanel);
 		
-		Window.alert("On module load finished");
+		Window.alert("On module load finished.");
 		
 	}
 	
@@ -201,7 +201,6 @@ public class Climattention implements EntryPoint {
 		CheckBox showLatitude = new CheckBox("show latitude");
 		CheckBox showAvg = new CheckBox("show average");
 		CheckBox showMax = new CheckBox("show maximum");
-		CheckBox showMin = new CheckBox("show minimum");
 
 		//add check-box widgets to the customize panel
 		customizePanel.add(showCountry);
@@ -211,9 +210,9 @@ public class Climattention implements EntryPoint {
 		customizePanel.add(showUncertainty);
 		customizePanel.add(showLongitude);
 		customizePanel.add(showLatitude);
-		//customizePanel.add(showAvg); 
-		//customizePanel.add(showMax); 
-		//customizePanel.add(showMin); 
+		/*customizePanel.add(showAvg); 
+		customizePanel.add(showMax); 
+		customizePanel.add(showMin); */
 
 		//set default values for each attribute
 		showCountry.setValue(true); 

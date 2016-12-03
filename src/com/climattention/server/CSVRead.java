@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.climattention.shared.Datapoint;
-import com.google.gwt.user.client.Window;
+//import com.google.gwt.user.client.Window;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVReader;
 

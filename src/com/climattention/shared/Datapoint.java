@@ -13,7 +13,7 @@ public class Datapoint implements Serializable {
 	private String country;
 	private String city;
 	private float temperature;
-	private float avgTemperatur;
+	private float avgTemperature;
 	private float uncertainty;
 	private String longitude;
 	private String latitude;
