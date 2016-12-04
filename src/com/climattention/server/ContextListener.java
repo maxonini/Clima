@@ -44,7 +44,7 @@ public class ContextListener implements ServletContextListener {
 		
 		arg0.getServletContext().setAttribute(ContextContent.CLIMATE_DATA, myData);
 		
-		arg0.getServletContext().setAttribute(ContextContent.CLIMATE_DATA, myData);
+		arg0.getServletContext().setAttribute(ContextContent.AVERAGE_PER_YEAR, averageDataMap);
 
 	}
 	
