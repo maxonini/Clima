@@ -25,11 +25,11 @@ public class Map implements Ivis{
 	private FlowPanel sliderPanel = new  FlowPanel();
 	private Label halp = new Label("Hier oben ist ein Slider, man sieht ihn aber nicht :(");
 
-	private Datapoint[] climateData;
+	private AverageData[] climateData;
 	
 	public Map(){}
 	
-	public Map(int mapWidth, int mapHeight, Datapoint[] climateData){
+	public Map(int mapWidth, int mapHeight, AverageData[] climateData){
 		this.mapWidth = mapWidth;
 		this.mapHeight = mapHeight;
 		this.climateData = climateData;
@@ -93,11 +93,11 @@ public class Map implements Ivis{
 	 * @return void
 	 */
 	@Override
-	public void reloadData(Datapoint[] newData) {
+	public void reloadData(AverageData[] newData) {
 		this.climateData = newData;
 	}
 	
-	public Datapoint[] getData(){
+	public AverageData[] getData(){
 		return this.climateData;
 	}
 
