@@ -14,8 +14,10 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
-//import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -181,7 +183,7 @@ public class Climattention implements EntryPoint {
 	 
 	 * @return vertMap
 	 */
-	private VerticalPanel createMap(VerticalPanel VertMap){
+	private VerticalPanel createMap(VerticalPanel vertMap){
 		
 		//Load map with the default startingYear
 		//TODO: Connect slider
