@@ -1,12 +1,15 @@
 package com.climattention.server;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.climattention.shared.AverageData;
 import com.climattention.shared.Datapoint;
 
 
@@ -35,7 +38,7 @@ public class ContextListener implements ServletContextListener {
 		
 		CSVRead reader = new CSVRead();
 		//Path might be in need to get fixed, didnt work on my machine with a realtive path
-		String path = "/Climattention/resources/GlobalLandTemperaturesByMajorCity_v1.csv";
+		String path = "C:/Users/Max Meier/Documents/GitHub/Clima/resources/GlobalLandTemperaturesByMajorCity_v1.csv";
 		reader.readCSV(path);
 		myData = (ArrayList<Datapoint>) reader.parseData();
 		

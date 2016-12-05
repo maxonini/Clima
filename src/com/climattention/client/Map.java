@@ -1,5 +1,6 @@
 package com.climattention.client;
 
+import com.climattention.shared.AverageData;
 import com.climattention.shared.Datapoint;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -54,7 +55,7 @@ public class Map implements Ivis{
 				dataTable.addRows(climateData.length);
 				for (int i = 0; i < climateData.length; i++){
 					dataTable.setValue(i, 0, climateData[i].getCountry());
-					dataTable.setValue(i, 1, climateData[i].getTemperature());
+					dataTable.setValue(i, 1, climateData[i].getAverageTemp());
 				}
 				
 				options = GeoMap.Options.create();

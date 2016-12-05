@@ -1,5 +1,8 @@
 package com.climattention.server;
 
+import java.util.List;
+import java.util.Map;
+
 import com.climattention.client.ClimaService;
 import com.climattention.shared.AverageData;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;

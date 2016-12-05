@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
 import com.google.gwt.visualization.client.DataTable;
 import com.google.gwt.visualization.client.VisualizationUtils;
+import com.climattention.shared.AverageData;
 import com.climattention.shared.Datapoint;
 import com.google.gwt.visualization.client.visualizations.Table;
 import com.google.gwt.visualization.client.visualizations.Table.Options;
@@ -65,13 +66,19 @@ public class MyTable extends Composite implements Ivis {
 		return vP;
 	}
 
-	@Override
+	
 	public void reloadData(Datapoint[] newData) {
 		data = newData;		
 	}
 	
 	public Datapoint[] getData(){
 		return (Datapoint[])data;
+	}
+
+	@Override
+	public void reloadData(AverageData[] newData) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

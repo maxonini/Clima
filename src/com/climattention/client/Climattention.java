@@ -3,6 +3,7 @@ package com.climattention.client;
 
 import java.util.ArrayList;
 
+import com.climattention.shared.AverageData;
 import com.climattention.shared.Datapoint;
 import com.climattention.shared.Sorter;
 import com.google.gwt.core.client.EntryPoint;
@@ -46,6 +47,7 @@ public class Climattention implements EntryPoint {
     private VerticalPanel mainPanel;
 	private Map myMap = new Map();
 	private MyTable myTable = new MyTable();
+	private ClimaServiceAsync climaService = GWT.create(GreetingService.class);
 	private GreetingServiceAsync greetService = GWT.create(GreetingService .class);
 	private ArrayList<Sorter> sorters= new ArrayList<Sorter>();
 	//private FlexTable currentDisplay;
