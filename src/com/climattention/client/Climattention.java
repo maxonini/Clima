@@ -47,7 +47,7 @@ public class Climattention implements EntryPoint {
     private VerticalPanel mainPanel;
 	private Map myMap = new Map();
 	private MyTable myTable = new MyTable();
-	private ClimaServiceAsync climaService = GWT.create(GreetingService.class);
+	private ClimaServiceAsync climaService = GWT.create(ClimaService.class);
 	private GreetingServiceAsync greetService = GWT.create(GreetingService .class);
 	private ArrayList<Sorter> sorters= new ArrayList<Sorter>();
 	//private FlexTable currentDisplay;
@@ -63,35 +63,37 @@ public class Climattention implements EntryPoint {
 	public void onModuleLoad() {
 		
 		// SliderGenerierung
-		final SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(163, "80%", true);
-		slider.drawMarks("grey", 100);
-		
-		Label sliderYear1850=new Label("************1850 ** 1860 ** 1870 ** 1880 ** 1890 ** 1900 ** 1910 ** 1920 ** 1930 ** 1940 ** 1950 ** 1960 ** 1970 ** 1980 ** 1990 ** 2000 ** 2013************");
-		
-		final Label sliderYear = new Label(String.valueOf(slider.getValue()+1850));
-		
-		Button addSliderButton = new Button("Aktualisieren");
-		addSliderButton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event){
-				sliderYear.setText(String.valueOf(slider.getValue()+1850));
-			}
-		});
-		
-		
-		sliderPanel.add(slider);
-		sliderPanel.add(sliderYear1850);
-		
-		sliderPanel.add(addSliderButton);
-		
-	    sliderPanel.add(sliderYear);
+//		final SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(163, "80%", true);
+//		slider.drawMarks("grey", 100);
+//		
+//		Label sliderYear1850=new Label("************1850 ** 1860 ** 1870 ** 1880 ** 1890 ** 1900 ** 1910 ** 1920 ** 1930 ** 1940 ** 1950 ** 1960 ** 1970 ** 1980 ** 1990 ** 2000 ** 2013************");
+//		
+//		final Label sliderYear = new Label(String.valueOf(slider.getValue()+1850));
+//		
+//		Button addSliderButton = new Button("Aktualisieren");
+//		addSliderButton.addClickHandler(new ClickHandler() {
+//			@Override
+//			public void onClick(ClickEvent event){
+//				sliderYear.setText(String.valueOf(slider.getValue()+1850));
+//			}
+//		});
+//		
+//		
+//		sliderPanel.add(slider);
+//		sliderPanel.add(sliderYear1850);
+//		
+//		sliderPanel.add(addSliderButton);
+//		
+//	    sliderPanel.add(sliderYear);
 		
 		
 		
 		// sorter for filtration of table
+		Window.alert("   1   On module load finished.");	
 		createStartingSorters();
+		Window.alert(" 2   On module load finished.");
 		reloadTable();
-		
+		Window.alert("On module load finished.");
 		createUserInterface();
 		// data point for testing
 	

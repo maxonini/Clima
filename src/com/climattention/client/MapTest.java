@@ -7,6 +7,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class MapTest{
+	
+	public MapTest(){}
 
 	@Test
 	public void testGetVis() {

@@ -7,6 +7,8 @@ import org.junit.Test;
 import com.climattention.shared.Datapoint;
 
 public class MyTableTest {
+	
+	public MyTableTest(){}
 
 	@Test
 	public void testReloadData() {

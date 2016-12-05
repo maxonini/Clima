@@ -8,6 +8,8 @@ import org.junit.Test;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ClimattentionTest {
+	
+	public ClimattentionTest(){}
 
 	@Test
 	public void testOnModuleLoad() {

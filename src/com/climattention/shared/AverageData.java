@@ -3,6 +3,8 @@ package com.climattention.shared;
 import java.io.Serializable;
 
 public class AverageData implements Serializable {
+	
+	public AverageData(){}
 
 	/**
 	 * 
