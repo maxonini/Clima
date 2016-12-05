@@ -27,16 +27,16 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 			ArrayList<Datapoint> finishedData  = new ArrayList<Datapoint>();
 			
 			//check whether sorter is set
-			if(sorter.isEmpty()){
+			/*if(sorter.isEmpty()){
 				return dataList.toArray(new Datapoint[0]);
 			}
 				
 			for (Datapoint data : dataList){
 				
 				if()
-			}
+			}*/
 			
-			
+			return dataList.toArray(new Datapoint[0]);
 					
 		}
 

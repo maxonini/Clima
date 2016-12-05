@@ -108,7 +108,7 @@ public class Climattention implements EntryPoint {
 	private void createStartingSorters(){
 		Sorter sort = new Sorter();
 		sort.setMaxUncert(INIT_MAX_UNCERTAIN);
-		sort.setMinUncert(INIT_MIN_UNCERTAIN);
+		//sort.setMinUncert(INIT_MIN_UNCERTAIN);
 		sort.setStartYear(STARTING_YEAR);
 		sort.setEndYear(STARTING_YEAR);
 		sorters.add(sort);
@@ -377,7 +377,7 @@ public class Climattention implements EntryPoint {
 		// Create uncertainty filter
 		VerticalPanel uncertaintyFilter = new VerticalPanel();
 
-		HorizontalPanel uncertaintyFromFilter = new HorizontalPanel();
+		/*HorizontalPanel uncertaintyFromFilter = new HorizontalPanel();
 
 		Label uncertaintyFromLabel = new Label("Uncertainty from:");
 		uncertaintyFromLabel.setStyleName("filterLabel");
@@ -395,7 +395,7 @@ public class Climattention implements EntryPoint {
 
 		uncertaintyFromFilter.add(uncertaintyFromLabel);
 		uncertaintyFromFilter.add(uncertaintyFrom);
-		uncertaintyFromFilter.add(addUncertaintyFromButton);
+		uncertaintyFromFilter.add(addUncertaintyFromButton);*/
 
 		HorizontalPanel uncerataintyToFilter = new HorizontalPanel();
 
@@ -545,7 +545,7 @@ public class Climattention implements EntryPoint {
 	 * generates a new filter by adding the value "UncertaintyFrom" set in textbox as minUncertainty to sorters 
 	 * works only if number is entered
 	*/
-	
+/*	
 	private void addUncertaintyFromSorter(){
 		if(uncertaintyFrom.getText()!= null) {
 			Sorter newSorter;
@@ -561,7 +561,7 @@ public class Climattention implements EntryPoint {
 		} 
 		
 		
-	}
+	}*/
 	
 	/** 
 	 * generates a new filter by adding the value "UncertaintyTo" set in textbox as maxUncertainty to sorters 
