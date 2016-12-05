@@ -16,15 +16,15 @@
     <url-pattern>/climattention/climateData</url-pattern>
   </servlet-mapping> 
   
-<!--   <servlet>  -->
-<!--     <servlet-name>ClimaServiceImpl</servlet-name> -->
-<!--     <servlet-class>com.climattention.server.ClimaServiceImpl</servlet-class> -->
-<!--   </servlet> -->
+   <servlet>  
+     <servlet-name>ClimaServiceImpl</servlet-name> 
+     <servlet-class>com.climattention.server.ClimaServiceImpl</servlet-class>
+   </servlet> 
   
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>ClimaServiceImpl</servlet-name> -->
-<!--     <url-pattern>/climattention/averageYear</url-pattern>	 -->
-<!--   </servlet-mapping>  -->
+   <servlet-mapping> 
+     <servlet-name>ClimaServiceImpl</servlet-name> 
+     <url-pattern>/climattention/averageYear</url-pattern>
+   </servlet-mapping>  
 
  <listener> 
  	<listener-class> 
