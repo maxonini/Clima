@@ -13,10 +13,16 @@ public class Sorter implements Serializable{
 	private int startYear = -1;
 	private int endYear = 1;
 	private double maxUncert = -1;
-	private double minUncert = 0;
+	//private double minUncert = 0;
 	private String city = null;
 	private String country = null;
 	
+	public boolean isEmpty(){
+		if(startYear == -1 && endYear == 1 && maxUncert == 0 && city == null && country == null){
+			return true;
+		}
+		else return false;
+	}
 	
 	public int getStartYear() {
 		return startYear;
@@ -36,12 +42,12 @@ public class Sorter implements Serializable{
 	public void setMaxUncert(double maxUncert) {
 		this.maxUncert = maxUncert;
 	}
-	public double getMinUncert() {
+	/*public double getMinUncert() {
 		return minUncert;
 	}
 	public void setMinUncert(double minUncert) {
 		this.minUncert = minUncert;
-	}
+	}*/
 	public String getCity() {
 		return city;
 	}

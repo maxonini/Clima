@@ -20,11 +20,23 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 		@Override
 		public Datapoint[] getClimateData(Sorter[] sorter) {
 			
+			//create Datalist with imported data
 			List<Datapoint> dataList = (List<Datapoint>)this.getServletContext().getAttribute("climateData");
 			
+			//create List with filtered data
 			ArrayList<Datapoint> finishedData  = new ArrayList<Datapoint>();
 			
-			return dataList.toArray(new Datapoint[0]);
+			//check whether sorter is set
+			if(sorter.isEmpty()){
+				return dataList.toArray(new Datapoint[0]);
+			}
+				
+			for (Datapoint data : dataList){
+				
+				if()
+			}
+			
+			
 					
 		}
 
