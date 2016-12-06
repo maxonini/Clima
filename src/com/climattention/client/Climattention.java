@@ -486,7 +486,6 @@ public class Climattention implements EntryPoint {
 			}
 
 		};
-		Window.alert("RPC over first");
 		greetService.getClimateData(sorter, callback);
 	}
 	

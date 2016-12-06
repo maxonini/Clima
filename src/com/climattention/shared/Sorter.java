@@ -11,7 +11,7 @@ public class Sorter implements Serializable{
 	
 	
 	private int startYear = -1;
-	private int endYear = 1;
+	private int endYear = 2016;
 	private double maxUncert = -1;
 	//private double minUncert = 0;
 	private String city = null;
