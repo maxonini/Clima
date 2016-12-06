@@ -35,7 +35,7 @@ public class Climattention implements EntryPoint {
 	
 	public Climattention(){}
 	
-	private static final double INIT_MIN_UNCERTAIN = 0.0;
+	//private static final double INIT_MIN_UNCERTAIN = 0.0;
 	private static final double INIT_MAX_UNCERTAIN = 0.5;
 	private static final int STARTING_YEAR = 2000;
 	
@@ -49,7 +49,7 @@ public class Climattention implements EntryPoint {
 	private MyTable myTable = new MyTable();
 	private ClimaServiceAsync climaService = GWT.create(ClimaService.class);
 	private GreetingServiceAsync greetService = GWT.create(GreetingService .class);
-	private ArrayList<Sorter> sorters= new ArrayList<Sorter>();
+	private Sorter sorter= new Sorter();
 	//private FlexTable currentDisplay;
 	
 	TextBox uncertaintyFrom;
@@ -88,37 +88,16 @@ public class Climattention implements EntryPoint {
 		
 		
 		
-		// sorter for filtration of table
-		Window.alert("   1   On module load finished.");	
-		createStartingSorters();
-		Window.alert(" 2   On module load finished.");
+		// sorter for filtration of table	
+		Sorter sorter = new Sorter();
 		reloadTable();
-		Window.alert("On module load finished.");
 		createUserInterface();
-		// data point for testing
-	
-		
 		Window.alert("On module load finished.");
-		
-	}
-	
-	/**
-	 * Initialize the default sort factors
-	 */
-	private void createStartingSorters(){
-		Sorter sort = new Sorter();
-		sort.setMaxUncert(INIT_MAX_UNCERTAIN);
-		//sort.setMinUncert(INIT_MIN_UNCERTAIN);
-		sort.setStartYear(STARTING_YEAR);
-		sort.setEndYear(STARTING_YEAR);
-		sorters.add(sort);
-		
-		
+		// data point for testing
 		
 	}
 	
 	
-
 	private void createUserInterface(){
 	
 		mainPanel = new VerticalPanel();
@@ -507,8 +486,8 @@ public class Climattention implements EntryPoint {
 			}
 
 		};
-		
-		greetService.getClimateData(sorters.toArray(new Sorter[0]), callback);
+		Window.alert("RPC over first");
+		greetService.getClimateData(sorter, callback);
 	}
 	
 	
@@ -564,93 +543,55 @@ public class Climattention implements EntryPoint {
 	}*/
 	
 	/** 
-	 * generates a new filter by adding the value "UncertaintyTo" set in textbox as maxUncertainty to sorters 
+	 * generates a new filter by adding the value "UncertaintyTo" set in textbox as maxUncertainty to sorter 
 	*/
 	private void addUncertaintyToSorter(){
 		if(uncertaintyTo.getText() != null) {
-			Sorter newSorter;
-			if(sorters.size() == 0) {
-				newSorter = new Sorter();
-				newSorter.setMaxUncert(Double.parseDouble(uncertaintyTo.getText()));
-				sorters.add(newSorter);
-			} else {
-				newSorter = sorters.get(0); 
-				newSorter.setMaxUncert(Double.parseDouble(uncertaintyTo.getText()));
-			}
+			sorter.setMaxUncert(Double.parseDouble(uncertaintyTo.getText()));
 			reloadTable();
 		}
-		
 	}
 	
 	/** 
-	 * generates a new filter by adding the value "YearFrom" set in textbox to sorters 
+	 * generates a new filter by adding the value "YearFrom" set in textbox to sorter
 	*/
 	private void addYearFromSorter(){
 		if(yearFrom.getText() != null) {
-			Sorter newSorter;
-			if(sorters.size()== 0){
-				newSorter = new Sorter();
-				newSorter.setStartYear(Integer.parseInt(yearFrom.getText()));
-				sorters.add(newSorter);
-			} else {
-				newSorter = sorters.get(0);
-				newSorter.setStartYear(Integer.parseInt(yearFrom.getText()));
-			}
+			sorter.setStartYear(Integer.parseInt(yearFrom.getText()));
 			reloadTable();
-			
-		}
-		
-		
+		}	
 	}	
 	
 	/** 
-	 * generates a new filter by adding the value "YearTo" set in textbox to sorters 
+	 * generates a new filter by adding the value "YearTo" set in textbox to sorter
 	*/
 	private void addYearToSorter(){
 		if (yearTo.getText()!=null) {
-			Sorter newSorter;
-			if (sorters.size()==0) {
-				newSorter = new Sorter();
-				newSorter.setEndYear(Integer.parseInt(yearTo.getText()));
-				sorters.add(newSorter);
-			} else {
-				newSorter = sorters.get(0);
-				newSorter.setEndYear(Integer.parseInt(yearTo.getText()));
-			}
+			sorter.setEndYear(Integer.parseInt(yearTo.getText()));
 			reloadTable();
-}
-		
+		}
 	}
 	
 	/** 
-	 * generates a new filter by adding the value "cityName" set in textbox to sorters 
+	 * generates a new filter by adding the value "cityName" set in textbox to sorter
 	*/
 	
 	private void addCityNameSorter(){
 		if (cityName.getText()!=null) {
-			Sorter newFilter = new Sorter();
-			newFilter.setCity(cityName.getText());
-			sorters.add(newFilter);
+			sorter.setCity(cityName.getText());
 			reloadTable();
-}
-		
+		}
 	}
 	
 	/** 
-	 * generates a new filter by adding the value "countryName" set in textbox to sorters 
+	 * generates a new filter by adding the value "countryName" set in textbox to sorter 
 	*/
 	private void addCountryNameSorter(){
 		if (countryName.getText()!=null) {
-			Sorter newFilter = new Sorter();
-			newFilter.setCountry(countryName.getText());
-			sorters.add(newFilter);
+			sorter.setCountry(countryName.getText());
 			reloadTable();
-}
-	
+		}
 	}
-	
-	
-	
 	
 	
 	

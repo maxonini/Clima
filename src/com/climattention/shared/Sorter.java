@@ -18,7 +18,7 @@ public class Sorter implements Serializable{
 	private String country = null;
 	
 	public boolean isEmpty(){
-		if(startYear == -1 && endYear == 1 && maxUncert == 0 && city == null && country == null){
+		if(startYear == -1 && endYear == 1 && maxUncert == -1 && city == null && country == null){
 			return true;
 		}
 		else return false;

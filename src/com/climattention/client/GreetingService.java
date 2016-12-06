@@ -11,7 +11,7 @@ import com.climattention.shared.Sorter;
 @RemoteServiceRelativePath("climateData")
 public interface GreetingService extends RemoteService {
 	
-	Datapoint[] getClimateData(Sorter[] sorter);
+	Datapoint[] getClimateData(Sorter sorter);
 	
 	
 	
