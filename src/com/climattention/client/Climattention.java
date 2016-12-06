@@ -52,7 +52,7 @@ public class Climattention implements EntryPoint {
 	private Sorter sorter= new Sorter();
 	//private FlexTable currentDisplay;
 	
-	TextBox uncertaintyFrom;
+	//TextBox uncertaintyFrom;
 	TextBox uncertaintyTo;
 	TextBox yearFrom;
 	TextBox yearTo;
@@ -407,7 +407,13 @@ public class Climattention implements EntryPoint {
 		resetFilterButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				//filters.clear();
+				sorter.clear();
+				uncertaintyTo.setText("");
+				yearFrom.setText("");
+				yearTo.setText("");
+				countryName.setText("");
+				cityName.setText("");
+				reloadTable();
 			}
 		});
 		

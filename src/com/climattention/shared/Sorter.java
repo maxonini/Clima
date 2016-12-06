@@ -24,6 +24,18 @@ public class Sorter implements Serializable{
 		else return false;
 	}
 	
+	public boolean clear(){
+		startYear = -1;
+		endYear = 2016;
+		maxUncert = -1;
+		city = null;
+		country = null;
+		if(this.isEmpty()){
+			return true;
+		}
+		else return false;
+	}
+	
 	public int getStartYear() {
 		return startYear;
 	}

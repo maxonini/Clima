@@ -19,10 +19,6 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * @author Valérie
  *
  */
-/**
- * @author Valérie
- *
- */
 @SuppressWarnings("serial")
 public class GreetingServiceImpl extends RemoteServiceServlet implements GreetingService {
 
