@@ -142,7 +142,7 @@ public class Climattention implements EntryPoint {
 
 	
 		//Create an anchor to show the link to the external source
-		Anchor sourceAnchor = new Anchor("Data source ", "http://www.ifi.uzh.ch/en/rerg/courses/hs16/se.html");
+		Anchor sourceAnchor = new Anchor("Data source: Berkeley Earth", "http://berkeleyearth.org/");
 		sourceAnchor.setStyleName("source");
 		
 	

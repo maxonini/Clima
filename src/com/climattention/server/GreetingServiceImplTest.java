@@ -22,7 +22,7 @@ public class GreetingServiceImplTest {
 	public void testGetClimateData() {
 		
 		Sorter sorter = new Sorter();
-		sorter.setCountry("india");
+		sorter.setCountry("India");
 		
 		GreetingServiceAsync greetTest = GWT.create(ClimaService.class);
 		assertNotNull(greetTest);

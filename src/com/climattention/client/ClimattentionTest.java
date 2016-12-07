@@ -13,12 +13,16 @@ public class ClimattentionTest {
 
 	@Test
 	public void testOnModuleLoad() {
-		fail("Not yet implemented");
+		Climattention clima1 = new Climattention();
+		clima1.onModuleLoad();
+		
+		
 	}
 	
 	@Test
 	private void testCreateUserInterface() {
-		fail("Not yet implemented");
+		
+		
 	}
 	
 	@Test

@@ -2,6 +2,8 @@ package com.climattention.client;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import com.climattention.shared.AverageData;
 import com.climattention.shared.Datapoint;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -35,5 +37,7 @@ public class MapTest{
 		Datapoint[] output = map.getData();
 		assertArrayEquals(places, output);
 	}
+	
+
 
 }
