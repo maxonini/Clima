@@ -1,8 +1,6 @@
 package com.climattention.client;
 
 
-import java.util.ArrayList;
-
 import com.climattention.shared.AverageData;
 import com.climattention.shared.Datapoint;
 import com.climattention.shared.Sorter;
@@ -14,7 +12,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -35,24 +32,20 @@ public class Climattention implements EntryPoint {
 	
 	public Climattention(){}
 	
-	//private static final double INIT_MIN_UNCERTAIN = 0.0;
 	private static final double INIT_MAX_UNCERTAIN = 0.5;
 	private static final int STARTING_YEAR = 2000;
 	
-	private  FlowPanel sliderPanel = new  FlowPanel();
-
-	
+	private FlowPanel sliderPanel = new  FlowPanel();
 	private VerticalPanel mapPanel = new VerticalPanel();
 	private VerticalPanel tablePanel = new VerticalPanel();
     private VerticalPanel mainPanel;
+    
 	private Map myMap = new Map();
 	private MyTable myTable = new MyTable();
 	private ClimaServiceAsync climaService = GWT.create(ClimaService.class);
 	private GreetingServiceAsync greetService = GWT.create(GreetingService .class);
 	private Sorter sorter= new Sorter();
-	//private FlexTable currentDisplay;
 	
-	//TextBox uncertaintyFrom;
 	TextBox uncertaintyTo;
 	TextBox yearFrom;
 	TextBox yearTo;
@@ -124,17 +117,13 @@ public class Climattention implements EntryPoint {
 		tabPanel.setWidth("90%");
 		
 		
-	
 		//use the first tab as default 
 		tabPanel.selectTab(0);
 		
 		
 		//Creating MapView Layout
 		mapViewLayout = createMap(mapViewLayout);
-		
-		
-		//Window.alert("Test After CreateMap");
-		
+				
 		
 		//Creating TableViewLayout
 		tableViewLayout= createTable(tableViewLayout);
@@ -172,7 +161,6 @@ public class Climattention implements EntryPoint {
 		//TODO: Connect slider
 		reloadMap(STARTING_YEAR);
 		
-		
 		Label mapLabel = new Label("Map");
 		mapLabel.setStyleName("titleLabel");
 		vertMap.add(mapLabel);
@@ -180,8 +168,6 @@ public class Climattention implements EntryPoint {
 		HorizontalPanel showMap = new HorizontalPanel();
 		showMap.add(mapPanel); 
 		showMap.setSpacing(30);
-		
-		
 		
 
 		FlexTable viewMap = new FlexTable();
@@ -216,7 +202,7 @@ public class Climattention implements EntryPoint {
 		HorizontalPanel customizePanel = new HorizontalPanel();
 		customizePanel.setStyleName("paddedHorizontalPanel");
 		
-		//Create check-box widgets to select attributes of table 
+	/*	//Create check-box widgets to select attributes of table 
 		CheckBox showCountry = new CheckBox("show country");
 		CheckBox showCity = new CheckBox("show city");
 		CheckBox showDate = new CheckBox("show date");
@@ -235,9 +221,9 @@ public class Climattention implements EntryPoint {
 		customizePanel.add(showUncertainty);
 		customizePanel.add(showLongitude);
 		customizePanel.add(showLatitude);
-		/*customizePanel.add(showAvg); 
+		customizePanel.add(showAvg); 
 		customizePanel.add(showMax); 
-		customizePanel.add(showMin); */
+		customizePanel.add(showMin); 
 
 		//set default values for each attribute
 		showCountry.setValue(true); 
@@ -248,7 +234,7 @@ public class Climattention implements EntryPoint {
 		showLongitude.setValue(true);
 		showLatitude.setValue(true);
 		showAvg.setValue(true);
-		showMax.setValue(true);
+		showMax.setValue(true);*/
 		
 	
 		//Create horizontal panel for the filter options (filters for location, temperature and precision)
@@ -446,14 +432,16 @@ public class Climattention implements EntryPoint {
 
 		tableViewLayout.add(tableView);
 		
-		Label customizeLabel = new Label("Customize table ");
+		/*Label customizeLabel = new Label("Customize table ");
 		customizeLabel.setStyleName("centered");
 		tableViewLayout.add(customizeLabel);
-		tableViewLayout.add(customizePanel);
+		tableViewLayout.add(customizePanel);*/
 
 		Label filterLabel = new Label("Filter data ");
+		Label filterDataText = new Label("Enter the attributes of interest into the textboxes and click \"Add\" each time. After a couple of seconds, you will see the filtered table below.");
 		filterLabel.setStyleName("centered");
 		tableViewLayout.add(filterLabel);
+		tableViewLayout.add(filterDataText);
 		tableViewLayout.add(filterPanel);
 		
 		
@@ -519,7 +507,6 @@ public class Climattention implements EntryPoint {
 				
 			}
 		} );
-		
 		
 	}
 	

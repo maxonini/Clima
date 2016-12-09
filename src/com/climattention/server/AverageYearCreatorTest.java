@@ -17,6 +17,8 @@ import com.climattention.shared.Datapoint;
 public class AverageYearCreatorTest {
 
 	private final AverageYearCreator calc1 = new AverageYearCreator();
+	
+	//Checks if the function calculates the average per year and country correctly
 	@Test
 	public void testCalculateAveragePerYearAndCountry() {
 		// invented data given
@@ -45,6 +47,8 @@ public class AverageYearCreatorTest {
 		assertTrue(!actual.isEmpty());
 		}
 	
+	
+	//checks if the function returns correct output (empty list) if there is no data to calculate with
 	@Test
 	public void testCalculateAveragePerYearAndCountry_emptyInput() {
 		// invented data given

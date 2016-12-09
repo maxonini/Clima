@@ -14,6 +14,7 @@ public class DatapointSimpleTest {
 	private final String result = "CountryYear [country=France, year=2011]";
 
 	
+	//checks if the data point is converted correctly to the string
 	@Test
 	public void testToString() {
 		  String actual = d1.toString();
@@ -21,6 +22,7 @@ public class DatapointSimpleTest {
 		assertEquals(actual,result);
 	}
 	
+	//checks if to equal data points are identified as equal
 	@Test
 	public void testEquals() {
 		

@@ -25,6 +25,8 @@ public class CSVReadTest {
 	//path need to be adapted to your own
 	private final String path = "C:/Users/Jara/Documents/GitHub/Clima/resources/GlobalLandTemperaturesByMajorCity_v1.csv";
 	
+	
+	// checks if myData isnt empty anymore after the call of the readCSV function 
 	@Test
 	public void testReadCSV() {
 		myData2 = reader.readCSV(path);
@@ -32,6 +34,7 @@ public class CSVReadTest {
 		assertTrue(!myData.isEmpty());
 	}
 	
+	//checks if myData is parsed and myDataParsed isnt empty anymore
 	@Test
 	public void testParseData() {
 	
