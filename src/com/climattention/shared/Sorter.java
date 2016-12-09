@@ -8,8 +8,8 @@ public class Sorter implements Serializable{
 	 * implements the functions to get and set the attributes for the filtration of the table
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
+
 	private int startYear = -1;
 	private int endYear = 2016;
 	private double maxUncert = -1;

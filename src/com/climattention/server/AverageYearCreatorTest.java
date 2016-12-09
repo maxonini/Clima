@@ -23,11 +23,11 @@ public class AverageYearCreatorTest {
 	public void testCalculateAveragePerYearAndCountry() {
 		// invented data given
 		List<Datapoint> climateDatas = Arrays.asList(
-			new Datapoint("1.1.95", 3f ,0.03f, "Paris", "France","1000f","2008f"),
-			new Datapoint("1.1.98", 2f ,0.03f, "Paris", "France","1000f","2008f"),
-			new Datapoint("1.8.95", 30f ,0.43f, "Los Angeles", "USA","1056f","2208f"),
-			new Datapoint("1.8.95", 24f ,0.43f, "New York", "USA","1056f","2208f"),
-			new Datapoint("1.8.98", 28f ,0.43f, "New York", "USA","1056f","2208f")
+			new Datapoint("1995.1.1", 3f ,0.03f, "Paris", "France","1000f","2008f"),
+			new Datapoint("1998.1.1", 2f ,0.03f, "Paris", "France","1000f","2008f"),
+			new Datapoint("1995.1.8", 30f ,0.43f, "Los Angeles", "USA","1056f","2208f"),
+			new Datapoint("1995.1.8", 24f ,0.43f, "New York", "USA","1056f","2208f"),
+			new Datapoint("1995.1.8", 28f ,0.43f, "New York", "USA","1056f","2208f")
 			);
 						
 		// do
