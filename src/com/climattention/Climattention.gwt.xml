@@ -11,6 +11,8 @@
   <inherits name='com.google.gwt.core.Core' />
   <inherits name="com.google.gwt.visualization.Visualization"/>
   <inherits name="com.kiouri.sliderbar.SliderBarMVP" />
+  <inherits name='com.google.gwt.widgetideas.WidgetIdeas'/>
+  <inherits name='com.google.gwt.libideas.LibIdeas' />
   <!-- Inherit the default GWT style sheet.  You can change       -->
   <!-- the theme of your GWT application by uncommenting          -->
   <!-- any one of the following lines.                            -->
