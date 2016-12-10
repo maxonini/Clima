@@ -24,6 +24,7 @@ import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.kiouri.sliderbar.client.solution.simplehorizontal.SliderBarSimpleHorizontal;
+import com.google.gwt.widgetideas.client.SliderBar;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -45,6 +46,12 @@ public class Climattention implements EntryPoint {
 	private ClimaServiceAsync climaService = GWT.create(ClimaService.class);
 	private GreetingServiceAsync greetService = GWT.create(GreetingService .class);
 	private Sorter sorter= new Sorter();
+	
+	int firstDataYear = 1743;
+	int lastDataYear = 2013;
+
+	SliderBar sliderBar;
+	VerticalPanel verticalPanelSlider;
 	
 	TextBox uncertaintyTo;
 	TextBox yearFrom;
@@ -89,6 +96,29 @@ public class Climattention implements EntryPoint {
 		// data point for testing
 		
 	}
+	private Widget getSlider(){
+
+		verticalPanelSlider = new VerticalPanel();
+		sliderBar = new SliderBar(firstDataYear, lastDataYear);
+		sliderBar.setStepSize(1);
+		sliderBar.setCurrentValue(STARTING_YEAR);
+		sliderBar.setNumTicks(lastDataYear-firstDataYear);
+		sliderBar.setNumLabels(27);
+
+		verticalPanelSlider.add(sliderBar);
+		sliderBar.setVisible(true);
+		sliderBar.setHeight("52px");
+		sliderBar.setWidth("1200px");
+
+		sliderBar.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				reloadMap((int)sliderBar.getCurrentValue());
+			}
+		});
+		reloadMap((int)sliderBar.getCurrentValue());
+		return verticalPanelSlider;
+	}	 
 	
 	
 	private void createUserInterface(){
@@ -159,6 +189,7 @@ public class Climattention implements EntryPoint {
 		
 		//Load map with the default startingYear
 		//TODO: Connect slider
+		vertMap.add(getSlider());
 		reloadMap(STARTING_YEAR);
 		
 		Label mapLabel = new Label("Map");
