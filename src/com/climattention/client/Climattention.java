@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.kiouri.sliderbar.client.solution.simplehorizontal.SliderBarSimpleHorizontal;
 import com.google.gwt.widgetideas.client.SliderBar;
 
@@ -57,6 +58,7 @@ public class Climattention implements EntryPoint {
 	TextBox yearFrom;
 	TextBox yearTo;
 	SuggestBox countryName;
+	SuggestBox secondCountryName;
 	SuggestBox cityName;
 	
 	@Override
@@ -278,12 +280,19 @@ public class Climattention implements EntryPoint {
 
 		//Create country filter panel
 		HorizontalPanel countryFilter = new HorizontalPanel();
+		HorizontalPanel secondCountryFilter = new HorizontalPanel();
 
 		Label countryLabel = new Label("Select country");
 		countryLabel.setWidth("100px");
 		countryLabel.setStyleName("filterLabel");
+		
+		Label secondCountryLabel = new Label("Select second country");
+		secondCountryLabel.setWidth("100px");
+		secondCountryLabel.setStyleName("filterLabel");
 
 		countryName = new SuggestBox();
+		secondCountryName = new SuggestBox();
+		
 		Button addCountryButton = new Button("Add");
 		addCountryButton.addClickHandler(new ClickHandler() {
 			@Override
@@ -291,11 +300,24 @@ public class Climattention implements EntryPoint {
 				addCountryNameSorter();
 			}
 		});
+		
+		Button addSecondCountryButton = new Button("Add");
+		addSecondCountryButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event){
+				addSecondCountryNameSorter();
+			}
+		});
 
 		// Assemble countryFilter panel
 		countryFilter.add(countryLabel);
 		countryFilter.add(countryName);
 		countryFilter.add(addCountryButton);
+		
+		//Assemble secondCountryFilter panel
+		secondCountryFilter.add(secondCountryLabel);
+		secondCountryFilter.add(secondCountryName);
+		secondCountryFilter.add(addSecondCountryButton);
 
 		// Create city filter
 		HorizontalPanel cityFilter = new HorizontalPanel();
@@ -318,10 +340,11 @@ public class Climattention implements EntryPoint {
 		cityFilter.add(cityName);
 		cityFilter.add(addCityButton);
 
-
-		//Assemble country filter panel
+		// Assemble locationFilter with countries and city
 		locationFilter.add(countryFilter);
+		locationFilter.add(secondCountryFilter);
 		locationFilter.add(cityFilter);
+		
 
 
 		// Create year range filter
@@ -429,6 +452,7 @@ public class Climattention implements EntryPoint {
 				yearFrom.setText("");
 				yearTo.setText("");
 				countryName.setText("");
+				secondCountryName.setText("");
 				cityName.setText("");
 				reloadTable();
 			}
@@ -469,7 +493,7 @@ public class Climattention implements EntryPoint {
 		tableViewLayout.add(customizePanel);*/
 
 		Label filterLabel = new Label("Filter data ");
-		Label filterDataText = new Label("Enter the attributes of interest into the textboxes and click \"Add\" each time. After a couple of seconds, you will see the filtered table below.");
+		Label filterDataText = new Label("Enter the attributes of interest into the textboxes and click \"Add\" each time. After a couple of seconds, you will see the filtered table below. Attention: if you want to compare two countrys, please don't enter additionally a city. ");
 		filterLabel.setStyleName("centered");
 		tableViewLayout.add(filterLabel);
 		tableViewLayout.add(filterDataText);
@@ -612,6 +636,12 @@ public class Climattention implements EntryPoint {
 	private void addCountryNameSorter(){
 		if (countryName.getText()!=null) {
 			sorter.setCountry(countryName.getText());
+			reloadTable();
+		}
+	}
+	private void addSecondCountryNameSorter(){
+		if (secondCountryName.getText()!=null) {
+			sorter.setSecondCountry(secondCountryName.getText());
 			reloadTable();
 		}
 	}

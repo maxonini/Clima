@@ -70,7 +70,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements Greetin
 				//check for city
 				if(data.getCity().equalsIgnoreCase(sorter.getCity())|| sorter.getCity() == null){
 					//check for country
-					if(data.getCountry().equalsIgnoreCase(sorter.getCountry()) || sorter.getCountry() == null){
+					if(data.getCountry().equalsIgnoreCase(sorter.getCountry()) ||data.getCountry().equalsIgnoreCase(sorter.getSecondCountry()) || sorter.getCountry() == null){
 						//check year
 						if(data.getYearAsInt() <= sorter.getEndYear()&& data.getYearAsInt() >= sorter.getStartYear()){
 							return true;

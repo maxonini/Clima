@@ -16,9 +16,10 @@ public class Sorter implements Serializable{
 	//private double minUncert = 0;
 	private String city = null;
 	private String country = null;
+	private String secondCountry = null;
 	
 	public boolean isEmpty(){
-		if(startYear == -1 && endYear == 1 && maxUncert == -1 && city == null && country == null){
+		if(startYear == -1 && endYear == 1 && maxUncert == -1 && city == null && country == null && secondCountry == null){
 			return true;
 		}
 		else return false;
@@ -30,6 +31,7 @@ public class Sorter implements Serializable{
 		maxUncert = -1;
 		city = null;
 		country = null;
+		secondCountry = null;
 		if(this.isEmpty()){
 			return true;
 		}
@@ -69,8 +71,15 @@ public class Sorter implements Serializable{
 	public String getCountry() {
 		return country;
 	}
+	public String getSecondCountry() {
+		return secondCountry;
+	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	
+	public void setSecondCountry(String secondCountry) {
+		this.secondCountry = secondCountry;
 	}
 	
 	
