@@ -37,9 +37,9 @@ public class ContextListener implements ServletContextListener {
 		List<Datapoint> myData= new ArrayList<Datapoint>(); 
 		
 		CSVRead reader = new CSVRead();
-		//Path might be in need to get fixed, didnt work on my machine with a realtive path
-		ServletContext context = getContext();
-		String path = context.getRealPath("/WEB-INF/GlobalLandTemperaturesByMajorCity_v1.csv");
+	
+		URL url = CSVRead.class.getClassLoader().getResource("GlobalLandTemperaturesByMajorCity_v1.csv");
+		String path = url.getPath()
 		reader.readCSV(path);
 		myData = (ArrayList<Datapoint>) reader.parseData();
 		
