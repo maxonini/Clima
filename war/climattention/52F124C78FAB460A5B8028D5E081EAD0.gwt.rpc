@@ -1,0 +1,12 @@
+@FinalFields, false
+com.climattention.client.GreetingService, false, false, false, false, _, 893865806
+com.climattention.shared.Datapoint, true, true, false, false, com.climattention.shared.Datapoint/2200341908, 2200341908
+[Lcom.climattention.shared.Datapoint;, true, true, false, false, [Lcom.climattention.shared.Datapoint;/1158030693, 1158030693
+com.climattention.shared.Sorter, false, false, true, true, com.climattention.shared.Sorter/1380392876, 1380392876
+com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, true, true, com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException/3936916533, 3936916533
+com.google.gwt.user.client.rpc.RpcTokenException, true, true, false, false, com.google.gwt.user.client.rpc.RpcTokenException/2345075298, 2345075298
+com.google.gwt.user.client.rpc.XsrfToken, false, false, true, true, com.google.gwt.user.client.rpc.XsrfToken/4254043109, 4254043109
+java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873
+java.lang.RuntimeException, true, false, true, false, java.lang.RuntimeException/515124647, 515124647
+java.lang.String, true, true, true, true, java.lang.String/2004016611, 2004016611
+java.lang.Throwable, true, false, true, false, java.lang.Throwable/2953622131, 2953622131
