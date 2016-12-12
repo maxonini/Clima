@@ -37,10 +37,16 @@ public class ContextListener implements ServletContextListener {
 		List<Datapoint> myData= new ArrayList<Datapoint>(); 
 		
 		CSVRead reader = new CSVRead();
-	
+		
 		URL url = CSVRead.class.getClassLoader().getResource("GlobalLandTemperaturesByMajorCity_v1.csv");
-		String path = url.getPath()
-		reader.readCSV(path);
+		String path = url.getPath();
+		
+		//String path = "climattention/resources/GlobalLandTemperaturesByMajorCity_v1.csv";
+		try {
+			reader.readCSV(path);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		myData = (ArrayList<Datapoint>) reader.parseData();
 		
 		Map<Integer, List<AverageData>> averageDataMap = avgCreator.calculateAveragePerYearAndCountry(myData);
