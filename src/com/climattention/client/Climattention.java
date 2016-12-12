@@ -67,13 +67,13 @@ public class Climattention implements EntryPoint {
 	public void onModuleLoad() {
 
 		// SliderGenerierung
-		final SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(163, "70%", true);
+		final SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(270, "70%", true);
 		// slider.drawMarks("grey", 10);
 		reloadMap(2013);
-		Label sliderYear1850 = new Label(
-				"**1850 ** 1860 ** 1870 ** 1880 ** 1890 ** 1900 ** 1910 ** 1920 ** 1930 ** 1940 ** 1950 ** 1960 ** 1970 ** 1980 ** 1990 ** 2000 ** 2013**");
+/*		Label sliderYear1850 = new Label(
+				"**1850 ** 1860 ** 1870 ** 1880 ** 1890 ** 1900 ** 1910 ** 1920 ** 1930 ** 1940 ** 1950 ** 1960 ** 1970 ** 1980 ** 1990 ** 2000 ** 2013**");*/
 		Label moveSlider = new Label("Move Slider to start Map: ");
-		final Label sliderYear = new Label(String.valueOf(slider.getValue() + 1850));
+		final Label sliderYear = new Label(String.valueOf(slider.getValue() + 1743));
 
 		slider.addBarValueChangedHandler(new BarValueChangedHandler() {
 
@@ -81,13 +81,13 @@ public class Climattention implements EntryPoint {
 			public void onBarValueChanged(BarValueChangedEvent event) {
 				// reloadMap(event.getValue());
 				reloadMap(Integer.valueOf(sliderYear.getText()));
-				sliderYear.setText(String.valueOf(slider.getValue() + 1850));
+				sliderYear.setText(String.valueOf(slider.getValue() + 1743));
 
 			}
 		});
 		sliderPanel.add(moveSlider);
 		sliderPanel.add(slider);
-		sliderPanel.add(sliderYear1850);
+		//sliderPanel.add(sliderYear1850);
 		sliderPanel.add(new Label("Current Year: "));
 		sliderPanel.add(sliderYear);
 
@@ -543,7 +543,7 @@ public class Climattention implements EntryPoint {
 
 			@Override
 			public void onSuccess(Datapoint[] result) {
-				Window.alert("RPC successfull");
+				//Window.alert("RPC successfull");
 				myTable.reloadData(result);
 				myTable.getVis(tablePanel);
 			}
