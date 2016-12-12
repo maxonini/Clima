@@ -92,10 +92,41 @@ public class Climattention implements EntryPoint {
 		sliderPanel.add(sliderYear);
 
 		// sorter for filtration of table
+
 		Sorter sorter = new Sorter();
 		reloadTable();
 		createUserInterface();
-		Window.alert("On module load finished.");
+		
+		/*final SliderBarSimpleHorizontal slider = new SliderBarSimpleHorizontal(163, "80%", true);
+		slider.drawMarks("grey", 10);
+		
+		Label sliderYear1850 = new Label(
+				"**1850 ** 1860 ** 1870 ** 1880 ** 1890 ** 1900 ** 1910 ** 1920 ** 1930 ** 1940 ** 1950 ** 1960 ** 1970 ** 1980 ** 1990 ** 2000 ** 2013************");
+
+		final Label sliderYear = new Label(String.valueOf(slider.getValue() + 1850));
+
+		slider.addBarValueChangedHandler(new BarValueChangedHandler() {
+
+			@Override
+			public void onBarValueChanged(BarValueChangedEvent event) {
+				// reloadMap(event.getValue());
+				reloadMap(Integer.valueOf(sliderYear.getText()));
+				sliderYear.setText(String.valueOf(slider.getValue() + 1850));
+
+			}
+		});
+
+		sliderPanel.add(slider);
+		sliderPanel.add(sliderYear1850);
+		sliderPanel.add(sliderYear);
+		reloadMap(2013);
+		
+		
+		Window.alert("On module load finished");
+		*/
+		
+		
+		
 		// data point for testing
 
 	}
@@ -138,8 +169,9 @@ public class Climattention implements EntryPoint {
 		TabPanel tabPanel = new TabPanel();
 		mainPanel.add(tabPanel);
 		mainPanel.add(sliderPanel);
+	
+		//Create two tabs of the tab panel to switch between the map/table view 
 
-		// Create two tabs of the tab panel to switch between the map/table view
 		VerticalPanel mapViewLayout = new VerticalPanel();
 		VerticalPanel tableViewLayout = new VerticalPanel();
 
@@ -182,11 +214,12 @@ public class Climattention implements EntryPoint {
 	 * 
 	 * @return vertMap
 	 */
-	private VerticalPanel createMap(VerticalPanel vertMap) {
 
-		// Load map with the default startingYear
-		// TODO: Connect slider
-		// vertMap.add(getSlider());
+	private VerticalPanel createMap(VerticalPanel vertMap){
+		
+		//Load map with the default startingYear
+		//TODO: Connect slider
+		//vertMap.add(getSlider());
 		reloadMap(STARTING_YEAR);
 		vertMap.setWidth("1200px");
 
